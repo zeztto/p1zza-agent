@@ -36,7 +36,7 @@ This backs up any existing `~/.claude/` and copies all files into place.
 | Concern | `claude/` | `codex/` |
 |---|---|---|
 | Runtime | Claude Code (CLI/desktop/web) | Codex (OpenAI) |
-| Entrypoint | `CLAUDE.md` | `AGENTS.md` + `.agents/skills/` |
+| Entrypoint | `CLAUDE.md` | `AGENTS.md` + `skills/` |
 | Hooks | `settings.json` → `scripts/hooks/` | N/A |
 | MCP | `mcp-configs/mcp-servers.json` | N/A |
 | Installer | `install.sh` → `~/.claude/` | `install.sh` → `~/.codex/` |

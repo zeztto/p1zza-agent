@@ -4,6 +4,7 @@ set -euo pipefail
 P1ZZA_REPO_URL="${P1ZZA_REPO_URL:-https://github.com/zeztto/p1zza-agent}"
 P1ZZA_REPO_REF="${P1ZZA_REPO_REF:-main}"
 P1ZZA_TARBALL_URL="${P1ZZA_TARBALL_URL:-https://codeload.github.com/zeztto/p1zza-agent/tar.gz/refs/heads/$P1ZZA_REPO_REF}"
+P1ZZA_VERSION="${P1ZZA_VERSION:-0.2.0}"
 P1ZZA_AUTO_CONFIRM="${P1ZZA_AUTO_CONFIRM:-0}"
 P1ZZA_LINK_SHARED_SKILLS="${P1ZZA_LINK_SHARED_SKILLS:-0}"
 
@@ -105,13 +106,16 @@ read_user_input() {
 
 print_banner() {
   cat <<'EOF'
- ____  _                              _                 _
-|  _ \\(_)____________________ _      / \\   __ _  ___ _ __ | |_
-| |_) | |_  /_  / __/ _` |___/ _ \\   / _ \\ / _` |/ _ \\ '_ \\| __|
-|  __/| |/ / / / (_| (_| |  |  __/  / ___ \\ (_| |  __/ | | | |_
-|_|   |_/___/___\\___\\__,_|   \\___| /_/   \\_\\__, |\\___|_| |_|\\__|
-                                            |___/
+                     _                           _
+ _ __  _ _ _____ __ | |__  __ _      __ _  __ _| |_ _ _  ___
+| '_ \| |_ /_ / '  \| '_ \/ _` |____/ _` |/ _` |  _| ' \/ -_)
+| .__/|_/__/__|_|_|_|_.__/\__,_|\___\__,_|\__, |\__|_||_\___|
+|_|                                       |___/
 EOF
+  echo "version: $P1ZZA_VERSION"
+  echo "repo:    $P1ZZA_REPO_URL"
+  echo "creator: h4ppy p1zza"
+  echo "home:    https://p1zza.kr"
 }
 
 warn_overwrite() {

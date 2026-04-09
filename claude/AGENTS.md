@@ -9,7 +9,7 @@
 
 ## Codex Skills
 
-When running in Codex, prefer the local skills in `.agents/skills/`:
+When running in Codex, prefer the local skills in `skills/`:
 
 - `p1zza-agent` — umbrella router for installation, migration, and agent-system work
 - `p1zza-planner` — complex implementation and refactor planning

@@ -9,3 +9,5 @@ Use:
 - `./install.sh` for unified installation
 
 Shared semantics must stay aligned across both package directories.
+
+Product documentation should be AI-agent-friendly: explicit paths, deterministic structure, and low ambiguity.
