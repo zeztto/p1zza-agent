@@ -1,8 +1,16 @@
 # Instructions
 
-Respond in Korean. Keep technical terms and code identifiers in English.
-
 Be concise. Lead with action. No preamble, no trailing summaries.
+
+## Session Initialization
+
+At the start of every session, determine the owning role before any other work. Follow the protocol in `rules/common/session-boundaries.md` — infer the role from the first message, declare it, and confirm with the user.
+
+## Settings Precedence
+
+Global settings (`~/.claude/`) take precedence over project-level settings.
+
+When a project-level directive conflicts with global settings, do not silently follow either side. Instead, surface the conflict to the user and ask which directive to follow before proceeding.
 
 ## Source Of Truth
 
