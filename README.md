@@ -1,6 +1,6 @@
 # p1zza-agent
 
-[![Version](https://img.shields.io/badge/version-0.5.0-blue.svg)](https://github.com/zeztto/p1zza-agent)
+[![Version](https://img.shields.io/badge/version-0.5.1-blue.svg)](https://github.com/zeztto/p1zza-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Reference](https://img.shields.io/badge/reference-ECC-orange.svg)](https://github.com/affaan-m/everything-claude-code)
 
@@ -9,7 +9,7 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 REPO: `https://github.com/zeztto/p1zza-agent`
 HOMEPAGE: `https://p1zza.kr`
 CREATOR: `h4ppy p1zza`
-VERSION: `0.5.0`
+VERSION: `0.5.1`
 LINEAGE: fork of `Everything Claude Code (ECC)`
 UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
@@ -17,7 +17,7 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 `p1zza-agent`는 `Everything Claude Code (ECC)`를 바탕으로 발전시킨 프로젝트입니다. Claude와 Codex를 하나의 제품 안에서 함께 운영할 수 있도록 구조를 다시 정리했고, 각 런타임이 자기 방식대로 동작하면서도 공통 규칙과 협업 방식은 맞춰지도록 설계했습니다.
 
-`0.5.0`에서는 `ui-ux-designer` role을 추가해 user flow, wireframe, interaction model, usability artifact를 visual styling implementation과 분리했습니다. 이제 UX structure는 별도 role과 canonical packet으로 정의되고, `frontend-designer`는 styling implementation owner로 더 명확해졌습니다.
+`0.5.1`에서는 이 서비스를 처음 쓰는 사람과 AI agent가 더 빨리 적응할 수 있도록 튜토리얼 문서 2종을 추가했습니다. 이제 한국어 vibe-coding 사용자용 쉬운 가이드와 AI agent용 quickstart 문서가 제품 루트에 함께 제공됩니다.
 
 [한국어](#korean) | [English](#english)
 
@@ -31,13 +31,13 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 이 저장소의 루트는 실제 런타임이 설치되는 위치가 아니라, 제품을 유지보수하고 배포하기 위한 기준점입니다. 실제 설치는 `claude/`와 `codex/` 패키지를 통해 각각의 런타임 디렉터리로 이루어집니다.
 
-### 0.5.0 Highlights
+### 0.5.1 Highlights
 
-- `0.5.0` 에서 `ui-ux-designer` role을 Claude/Codex runtime에 추가
-- Codex skill discovery에 `p1zza-ui-ux-designer` wrapper 추가
-- `ux-brief-v1`, `ux-handoff-v1` packet template 추가
-- `frontend-designer`와의 경계를 visual styling implementation 중심으로 재정의
-- installer 기본 version metadata를 `0.5.0` 으로 상향
+- `0.5.1` 에서 제품 루트 `docs/` 아래에 튜토리얼 문서 2종 추가
+- AI agent onboarding용 `docs/ai-agent-quickstart.md` 추가
+- 한국어 vibe-coding 사용자용 `docs/vibe-coding-guide-ko.md` 추가
+- 루트 README에서 새 튜토리얼 문서로 바로 이동 가능하게 정리
+- installer 기본 version metadata를 `0.5.1` 으로 상향
 
 ### Canonical Paths
 
@@ -61,6 +61,7 @@ p1zza-agent/
 ├── CLAUDE.md
 ├── CHANGELOG.md
 ├── README.md
+├── docs/
 ├── install.sh
 ├── claude/
 │   ├── CLAUDE.md
@@ -109,6 +110,11 @@ curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/install.sh 
   P1ZZA_INSTALL_MODE=both P1ZZA_AUTO_CONFIRM=1 bash
 ```
 
+### Tutorials
+
+- AI agent quickstart: [`docs/ai-agent-quickstart.md`](./docs/ai-agent-quickstart.md)
+- Korean vibe-coding guide: [`docs/vibe-coding-guide-ko.md`](./docs/vibe-coding-guide-ko.md)
+
 ### Operating Rules
 
 이 프로젝트는 `claude/`와 `codex/` 사이의 공통 운영 semantics를 최대한 맞추되, 실제 entrypoint와 설치 경로는 런타임에 맞게 분리하는 원칙을 따릅니다. 또한 문서는 사람이 읽기 쉬워야 하지만, 유지보수와 설치 기준이 흔들리지 않도록 AI 에이전트가 해석하기에도 충분히 명확하게 작성합니다.
@@ -129,7 +135,7 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.5.0`
+- CURRENT_VERSION: `0.5.1`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance
@@ -150,13 +156,13 @@ Canonical packets:
 - RUNTIMES: `claude/`, `codex/`
 - PRODUCT_ROOT_ROLE: maintenance workspace, not a runtime package
 
-### 0.5.0 Highlights
+### 0.5.1 Highlights
 
-- `0.5.0` adds `ui-ux-designer` as a first-class coordination/design role in both runtimes
-- adds Codex skill wrapper `p1zza-ui-ux-designer`
-- introduces `ux-brief-v1` and `ux-handoff-v1` packet templates
-- separates UX structure and usability work from visual styling implementation
-- bumps installer default version metadata to `0.5.0`
+- `0.5.1` adds two product-level tutorial documents under root `docs/`
+- adds `docs/ai-agent-quickstart.md` for AI-agent onboarding
+- adds `docs/vibe-coding-guide-ko.md` for Korean vibe-coding users
+- links the tutorial documents directly from the root README
+- bumps installer default version metadata to `0.5.1`
 
 ### Canonical Paths
 
@@ -202,6 +208,11 @@ curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/install.sh 
   P1ZZA_INSTALL_MODE=both P1ZZA_AUTO_CONFIRM=1 bash
 ```
 
+### Tutorials
+
+- AI agent quickstart: [`docs/ai-agent-quickstart.md`](./docs/ai-agent-quickstart.md)
+- Korean vibe-coding guide: [`docs/vibe-coding-guide-ko.md`](./docs/vibe-coding-guide-ko.md)
+
 ### Operating Rules
 
 - SHARED_SEMANTICS: keep aligned across `claude/` and `codex/`
@@ -225,7 +236,7 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.5.0`
+- CURRENT_VERSION: `0.5.1`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance

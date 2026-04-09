@@ -16,9 +16,9 @@ This directory is the Claude Code-focused package for `p1zza-agent`.
 
 ## Current Scope
 
-- 24 agents
-- 39 rules
-- 21 hook scripts
+- 28 agents
+- 41 rules
+- 31 hook scripts
 - 1 MCP config
 
 ## Installation
@@ -45,4 +45,5 @@ Shared content (`AGENTS.md`, `agents/`, `rules/`) is identical across both packa
 
 ## Notes
 
-- The canonical packet set includes `lead-directive-v1`, `lead-response-v1`, `lead-review-v1`, `qa-contract-v1`, `qa-response-v1`, `frontend-contract-v1`, and `frontend-response-v1`.
+- The canonical packet set includes `lead-directive-v1`, `lead-response-v1`, `lead-review-v1`, `qa-contract-v1`, `qa-response-v1`, `frontend-contract-v1`, `frontend-response-v1`, `customer-signal-v1`, `customer-handoff-v1`, `ux-brief-v1`, and `ux-handoff-v1`.
+- Product-level tutorials live at root `docs/ai-agent-quickstart.md` and `docs/vibe-coding-guide-ko.md`.

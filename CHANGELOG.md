@@ -8,10 +8,36 @@ This file is AI-agent-friendly by default.
 - CHANGE TYPE: product-level summary, not commit dump
 - LINEAGE: `p1zza-agent` is maintained as an `Everything Claude Code (ECC)` fork adapted for Claude + Codex
 
-## 0.5.0
+## 0.5.1
 
 DATE: `2026-04-09`
 STATUS: preparing-in-repo
+
+SUMMARY:
+
+- Product usage is now easier to learn through two first-party tutorial documents.
+- The product root now gives both AI agents and Korean vibe-coding users a faster starting point.
+- Installer metadata and root documentation were aligned for the `0.5.1` line.
+
+CHANGES:
+
+- added `docs/ai-agent-quickstart.md` for AI-agent-first onboarding
+- added `docs/vibe-coding-guide-ko.md` for Korean vibe-coding users
+- linked both tutorial documents from root `README.md`
+- added `codex/docs/README.md` so the expected Codex package docs path exists again
+- refreshed package README scope counts for Claude and Codex
+- product version bumped from `0.5.0` to `0.5.1`
+
+IMPACT:
+
+- first-time users can start with examples instead of reverse-engineering the repo
+- AI agents have a lightweight startup checklist for correct project entry behavior
+- future Codex runtime installs are less likely to fail on a missing `codex/docs/` path
+
+## 0.5.0
+
+DATE: `2026-04-09`
+STATUS: released-in-repo
 
 SUMMARY:
 

@@ -5,7 +5,7 @@ This directory is the Codex-focused package for `p1zza-agent`.
 ## What Is Here
 
 - `AGENTS.md` — Codex workspace operating contract
-- `skills/` — 10 Codex skills for routing and specialist work
+- `skills/` — Codex skills for routing and specialist work
 - `agents/` — canonical role definitions used by the skills
 - `rules/` — canonical workflow, collaboration, and quality rules
 - `docs/` — migration notes from the legacy `p1zza-bot`
@@ -13,9 +13,9 @@ This directory is the Codex-focused package for `p1zza-agent`.
 
 ## Current Scope
 
-- 24 agents
-- 39 rules
-- 10 Codex skills
+- 28 agents
+- 41 rules
+- 14 Codex skills
 
 ## Installation
 
@@ -38,4 +38,5 @@ If you need legacy shared skill links for compatibility, run the installer with 
 ## Notes
 
 - This package is derived from the current `p1zza-agent` repo state.
-- The canonical packet set includes `lead-directive-v1`, `lead-response-v1`, `lead-review-v1`, `qa-contract-v1`, `qa-response-v1`, `frontend-contract-v1`, and `frontend-response-v1`.
+- The canonical packet set includes `lead-directive-v1`, `lead-response-v1`, `lead-review-v1`, `qa-contract-v1`, `qa-response-v1`, `frontend-contract-v1`, `frontend-response-v1`, `customer-signal-v1`, `customer-handoff-v1`, `ux-brief-v1`, and `ux-handoff-v1`.
+- Product-level tutorials live at root `docs/ai-agent-quickstart.md` and `docs/vibe-coding-guide-ko.md`.
