@@ -7,11 +7,11 @@ description: Use for backend implementation in the p1zza-agent workflow. Handles
 
 ## Canonical References
 
-- `../../../agents/backend-developer.md`
-- `../../../rules/common/security.md`
-- `../../../rules/web/frontend-collaboration.md`
-- `../../../rules/typescript/security.md`
-- `../../../rules/python/security.md`
+- `../../agents/backend-developer.md`
+- `../../rules/common/security.md`
+- `../../rules/web/frontend-collaboration.md`
+- `../../rules/typescript/security.md`
+- `../../rules/python/security.md`
 
 ## Scope
 

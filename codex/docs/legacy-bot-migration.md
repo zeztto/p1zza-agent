@@ -50,8 +50,9 @@ Decide what becomes permanent product surface:
 
 - keep durable operating contracts inside each runtime package:
   - Claude package: `rules/` and `agents/`
-  - Codex package: `rules/`, `agents/`, and `.agents/skills/`
+  - Codex package: `rules/`, `agents/`, and `skills/`
 - make the repository root a product shell with installation and handoff docs only
+- keep Codex skills on the actual runtime path used by Codex; do not reintroduce legacy hidden skill paths unless the runtime itself requires them
 - remove redundant legacy files from the root tree once package parity is verified
 
 ## Current Status

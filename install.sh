@@ -5,6 +5,7 @@ P1ZZA_REPO_URL="${P1ZZA_REPO_URL:-https://github.com/zeztto/p1zza-agent}"
 P1ZZA_REPO_REF="${P1ZZA_REPO_REF:-main}"
 P1ZZA_TARBALL_URL="${P1ZZA_TARBALL_URL:-https://codeload.github.com/zeztto/p1zza-agent/tar.gz/refs/heads/$P1ZZA_REPO_REF}"
 P1ZZA_AUTO_CONFIRM="${P1ZZA_AUTO_CONFIRM:-0}"
+P1ZZA_LINK_SHARED_SKILLS="${P1ZZA_LINK_SHARED_SKILLS:-0}"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 CLAUDE_SRC="$SCRIPT_DIR/claude"
@@ -15,8 +16,10 @@ TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 MODE_INPUT="${P1ZZA_INSTALL_MODE:-${1:-interactive}}"
 CLAUDE_TARGET="$HOME/.claude"
 CODEX_TARGET_ROOT="$HOME/.codex"
+CODEX_SKILLS_TARGET="$CODEX_TARGET_ROOT/skills"
+CODEX_LEGACY_SKILLS_TARGET="$CODEX_TARGET_ROOT/.agents/skills"
 CODEX_LEGACY_PACKAGE_TARGET="$CODEX_TARGET_ROOT/p1zza-agent"
-SKILLS_TARGET="$HOME/.agents/skills"
+SHARED_SKILLS_TARGET="$HOME/.agents/skills"
 
 CLAUDE_BACKUP_PATH=""
 CODEX_BACKUP_PATH=""
@@ -78,6 +81,7 @@ bootstrap_repo_if_needed() {
     P1ZZA_REPO_REF="$P1ZZA_REPO_REF" \
     P1ZZA_TARBALL_URL="$P1ZZA_TARBALL_URL" \
     P1ZZA_AUTO_CONFIRM="$P1ZZA_AUTO_CONFIRM" \
+    P1ZZA_LINK_SHARED_SKILLS="$P1ZZA_LINK_SHARED_SKILLS" \
     P1ZZA_INSTALL_MODE="$MODE_INPUT" \
     "$installer_path" "$@"
 }
@@ -118,11 +122,14 @@ This installer can overwrite or relink existing settings.
 
 - Claude install replaces: $CLAUDE_TARGET
 - Codex install updates:  $CODEX_TARGET_ROOT
-- Codex install relinks:  $SKILLS_TARGET/p1zza-*
+- Codex skills install to: $CODEX_SKILLS_TARGET/p1zza-*
 
 Existing targets will be backed up under:
 - $BACKUP_ROOT
 EOF
+  if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
+    echo "- Codex shared links:   $SHARED_SKILLS_TARGET/p1zza-*"
+  fi
 }
 
 ensure_claude_source() {
@@ -183,12 +190,17 @@ install_codex() {
   local item
   local target_path
   local skill_source_root
+  local skill_target_root
+  local legacy_skill_target_root
 
   echo ""
   echo "[Codex] Installing from $CODEX_SRC"
   echo "[Codex] Target root: $CODEX_TARGET_ROOT"
+  if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
+    echo "[Codex] Shared links: $SHARED_SKILLS_TARGET/p1zza-*"
+  fi
 
-  mkdir -p "$CODEX_TARGET_ROOT" "$SKILLS_TARGET"
+  mkdir -p "$CODEX_TARGET_ROOT"
 
   if [ -e "$CODEX_LEGACY_PACKAGE_TARGET" ] || [ -L "$CODEX_LEGACY_PACKAGE_TARGET" ]; then
     CODEX_LEGACY_BACKUP_PATH="$(backup_path "$CODEX_LEGACY_PACKAGE_TARGET" "codex-legacy-package")"
@@ -215,27 +227,14 @@ install_codex() {
     fi
   done
 
-  if [ -e "$CODEX_TARGET_ROOT/.agents/skills" ] || [ -L "$CODEX_TARGET_ROOT/.agents/skills" ]; then
-    if [ -z "$CODEX_BACKUP_PATH" ]; then
-      CODEX_BACKUP_PATH="$BACKUP_ROOT/codex-root-$TIMESTAMP"
-      mkdir -p "$CODEX_BACKUP_PATH"
-    fi
-    mkdir -p "$CODEX_BACKUP_PATH/.agents"
-    mv "$CODEX_TARGET_ROOT/.agents/skills" "$CODEX_BACKUP_PATH/.agents/skills"
-  fi
-
   cp "$CODEX_SRC/AGENTS.md" "$CODEX_TARGET_ROOT/"
   cp -R "$CODEX_SRC/agents" "$CODEX_TARGET_ROOT/"
   cp -R "$CODEX_SRC/rules" "$CODEX_TARGET_ROOT/"
   cp -R "$CODEX_SRC/docs" "$CODEX_TARGET_ROOT/"
-  mkdir -p "$CODEX_TARGET_ROOT/.agents"
-  cp -R "$CODEX_SRC/.agents/skills" "$CODEX_TARGET_ROOT/.agents/"
-  find "$CODEX_TARGET_ROOT" -name '.DS_Store' -delete 2>/dev/null || true
-
-  SKILL_BACKUP_DIR="$BACKUP_ROOT/codex-skills-$TIMESTAMP"
-  mkdir -p "$SKILL_BACKUP_DIR"
-
-  skill_source_root="$CODEX_TARGET_ROOT/.agents/skills"
+  skill_source_root="$CODEX_SRC/skills"
+  skill_target_root="$CODEX_SKILLS_TARGET"
+  legacy_skill_target_root="$CODEX_LEGACY_SKILLS_TARGET"
+  mkdir -p "$skill_target_root"
 
   local skill_dir
   for skill_dir in "$skill_source_root"/*; do
@@ -243,17 +242,61 @@ install_codex() {
 
     local skill_name
     skill_name="$(basename "$skill_dir")"
-    local skill_target="$SKILLS_TARGET/$skill_name"
+    local skill_target="$skill_target_root/$skill_name"
+    local legacy_skill_target="$legacy_skill_target_root/$skill_name"
 
     if [ -e "$skill_target" ] || [ -L "$skill_target" ]; then
-      mv "$skill_target" "$SKILL_BACKUP_DIR/$skill_name"
+      if [ -z "$CODEX_BACKUP_PATH" ]; then
+        CODEX_BACKUP_PATH="$BACKUP_ROOT/codex-root-$TIMESTAMP"
+        mkdir -p "$CODEX_BACKUP_PATH"
+      fi
+      mkdir -p "$CODEX_BACKUP_PATH/skills"
+      mv "$skill_target" "$CODEX_BACKUP_PATH/skills/$skill_name"
     fi
 
-    ln -s "$skill_dir" "$skill_target"
+    if [ -e "$legacy_skill_target" ] || [ -L "$legacy_skill_target" ]; then
+      if [ -z "$CODEX_BACKUP_PATH" ]; then
+        CODEX_BACKUP_PATH="$BACKUP_ROOT/codex-root-$TIMESTAMP"
+        mkdir -p "$CODEX_BACKUP_PATH"
+      fi
+      mkdir -p "$CODEX_BACKUP_PATH/.agents/skills"
+      mv "$legacy_skill_target" "$CODEX_BACKUP_PATH/.agents/skills/$skill_name"
+    fi
+
+    cp -R "$skill_dir" "$skill_target_root/"
   done
 
+  if [ -d "$legacy_skill_target_root" ]; then
+    rmdir "$legacy_skill_target_root" 2>/dev/null || true
+    rmdir "$CODEX_TARGET_ROOT/.agents" 2>/dev/null || true
+  fi
+
+  find "$CODEX_TARGET_ROOT" -name '.DS_Store' -delete 2>/dev/null || true
+
+  if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
+    SKILL_BACKUP_DIR="$BACKUP_ROOT/codex-skills-$TIMESTAMP"
+    mkdir -p "$SKILL_BACKUP_DIR" "$SHARED_SKILLS_TARGET"
+
+    for skill_dir in "$skill_target_root"/*; do
+      [ -d "$skill_dir" ] || continue
+
+      local skill_name
+      skill_name="$(basename "$skill_dir")"
+      local skill_target="$SHARED_SKILLS_TARGET/$skill_name"
+
+      if [ -e "$skill_target" ] || [ -L "$skill_target" ]; then
+        mv "$skill_target" "$SKILL_BACKUP_DIR/$skill_name"
+      fi
+
+      ln -s "$skill_dir" "$skill_target"
+    done
+  fi
+
   echo "[Codex] Installed files into: $CODEX_TARGET_ROOT"
-  echo "[Codex] Linked skills: $(find "$skill_source_root" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
+  echo "[Codex] Installed skills: $(find "$skill_target_root" -mindepth 1 -maxdepth 1 -type d -name 'p1zza-*' | wc -l | tr -d ' ')"
+  if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
+    echo "[Codex] Shared skill links: $(find "$skill_target_root" -mindepth 1 -maxdepth 1 -type d -name 'p1zza-*' | wc -l | tr -d ' ')"
+  fi
   INSTALLED_CODEX=1
 }
 
@@ -334,7 +377,11 @@ print_summary() {
 
   if [ "$INSTALLED_CODEX" -eq 1 ]; then
     echo "Codex root:     $CODEX_TARGET_ROOT"
-    echo "Codex skills:   $SKILLS_TARGET/p1zza-*"
+    echo "Codex skills:   $CODEX_SKILLS_TARGET/p1zza-*"
+  fi
+
+  if [ "$INSTALLED_CODEX" -eq 1 ] && [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
+    echo "Shared links:   $SHARED_SKILLS_TARGET/p1zza-*"
   fi
 
   if [ -n "$CLAUDE_BACKUP_PATH" ]; then

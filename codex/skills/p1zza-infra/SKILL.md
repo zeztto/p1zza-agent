@@ -7,9 +7,9 @@ description: Use for infrastructure, CI/CD, Docker, deployment, and environment-
 
 ## Canonical References
 
-- `../../../agents/infra.md`
-- `../../../rules/common/development-workflow.md`
-- `../../../rules/web/frontend-collaboration.md`
+- `../../agents/infra.md`
+- `../../rules/common/development-workflow.md`
+- `../../rules/web/frontend-collaboration.md`
 
 ## Scope
 

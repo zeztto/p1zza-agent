@@ -5,11 +5,11 @@ This directory is the Codex-focused package for `p1zza-agent`.
 ## What Is Here
 
 - `AGENTS.md` — Codex workspace operating contract
-- `.agents/skills/` — 10 Codex skills for routing and specialist work
+- `skills/` — 10 Codex skills for routing and specialist work
 - `agents/` — canonical role definitions used by the skills
 - `rules/` — canonical workflow, collaboration, and quality rules
 - `docs/` — migration notes from the legacy `p1zza-bot`
-- `install.sh` — installs the package into `~/.codex` and relinks `~/.agents/skills/p1zza-*`
+- `install.sh` — installs the package directly into `~/.codex`
 
 ## Current Scope
 
@@ -25,7 +25,9 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/
 
 로컬 clone에서 실행하려면 `cd codex && ./install.sh`를 사용하면 됩니다.
 
-This installs the managed p1zza files directly into `~/.codex`, preserves unrelated Codex state files, relinks `~/.agents/skills/p1zza-*`, and keeps the Codex runtime entrypoint at `~/.codex/AGENTS.md` without copying `CLAUDE.md` into the Codex root.
+This installs the managed p1zza files directly into `~/.codex`, preserves unrelated Codex state files, keeps the Codex runtime entrypoint at `~/.codex/AGENTS.md`, and installs Codex skills under `~/.codex/skills/` without touching shared `~/.agents/`.
+
+If you need legacy shared skill links for compatibility, run the installer with `P1ZZA_LINK_SHARED_SKILLS=1`.
 
 ## Recommended Use
 

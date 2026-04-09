@@ -7,10 +7,10 @@ description: Use when reviewing or modifying authentication, API endpoints, data
 
 ## Canonical References
 
-- `../../../agents/security-reviewer.md`
-- `../../../rules/common/security.md`
-- `../../../rules/typescript/security.md`
-- `../../../rules/python/security.md`
+- `../../agents/security-reviewer.md`
+- `../../rules/common/security.md`
+- `../../rules/typescript/security.md`
+- `../../rules/python/security.md`
 
 ## Workflow
 

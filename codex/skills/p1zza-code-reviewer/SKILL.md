@@ -7,8 +7,8 @@ description: Use after code changes in the p1zza-agent workflow to review diffs 
 
 ## Canonical References
 
-- `../../../agents/code-reviewer.md`
-- `../../../rules/common/code-review.md`
+- `../../agents/code-reviewer.md`
+- `../../rules/common/code-review.md`
 
 ## Workflow
 

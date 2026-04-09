@@ -6,6 +6,7 @@ Use this when the active role is development lead.
 
 Confirm all of the following before directing work:
 
+- bootstrap owner and `session-bootstrap-v1`
 - incoming packets, PRs, issues, and open blockers
 - missing contracts or unresolved ownership boundaries
 - cross-domain handoff order and integration dependencies
@@ -21,6 +22,7 @@ Confirm all of the following before directing work:
 
 ## Packet Lifecycle
 
+- `session-bootstrap-v1` starts a fresh task or materially changed request.
 - `lead-response-v1` replies only to `lead-directive-v1`.
 - QA also sends `lead-response-v1` after every QA run.
 - Use `NEXT_DIRECTIVE_REQUEST: request-next-task` only when the assigned scope is fully resolved.
@@ -30,3 +32,4 @@ Confirm all of the following before directing work:
 
 - Keep packets parser-safe: exact field order, no omitted fields, `none` for empty values.
 - Keep prose inside packet fields only when a formal packet is used.
+- Default user-facing coordination to packet-only output.
