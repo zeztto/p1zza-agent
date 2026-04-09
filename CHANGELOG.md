@@ -8,10 +8,34 @@ This file is AI-agent-friendly by default.
 - CHANGE TYPE: product-level summary, not commit dump
 - LINEAGE: `p1zza-agent` is maintained as an `Everything Claude Code (ECC)` fork adapted for Claude + Codex
 
-## 0.5.1
+## 0.5.2
 
 DATE: `2026-04-09`
 STATUS: preparing-in-repo
+
+SUMMARY:
+
+- The tutorial documents were corrected to target normal product-development usage instead of the `p1zza-agent` source repository itself.
+- AI-agent onboarding and the Korean beginner guide now both assume a product workspace that uses `p1zza-agent`.
+- Root documentation and installer metadata were aligned for the `0.5.2` line.
+
+CHANGES:
+
+- rewrote `docs/ai-agent-quickstart.md` around product-workspace onboarding
+- rewrote `docs/vibe-coding-guide-ko.md` around normal feature, bugfix, review, and release flows
+- updated root `README.md` tutorial summaries and version references to `0.5.2`
+- product version bumped from `0.5.1` to `0.5.2`
+
+IMPACT:
+
+- first-time users are less likely to misunderstand the service as a repo-maintenance-only tool
+- AI agents now get onboarding guidance that matches real product work
+- the Korean tutorial is easier to apply directly to actual service development
+
+## 0.5.1
+
+DATE: `2026-04-09`
+STATUS: released-in-repo
 
 SUMMARY:
 
