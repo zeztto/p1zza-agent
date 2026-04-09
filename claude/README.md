@@ -39,7 +39,7 @@ This backs up any existing `~/.claude/` and copies all files into place.
 | Entrypoint | `CLAUDE.md` | `AGENTS.md` + `.agents/skills/` |
 | Hooks | `settings.json` → `scripts/hooks/` | N/A |
 | MCP | `mcp-configs/mcp-servers.json` | N/A |
-| Installer | `install.sh` → `~/.claude/` | `install.sh` → `~/.codex/` + `~/.agents/skills/p1zza-*` |
+| Installer | `install.sh` → `~/.claude/` | `install.sh` → `~/.codex/` |
 
 Shared content (`AGENTS.md`, `agents/`, `rules/`) is identical across both packages.
 
