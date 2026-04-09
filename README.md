@@ -1,6 +1,6 @@
 # p1zza-agent
 
-[![Version](https://img.shields.io/badge/version-0.5.1-blue.svg)](https://github.com/zeztto/p1zza-agent)
+[![Version](https://img.shields.io/badge/version-0.5.2-blue.svg)](https://github.com/zeztto/p1zza-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Reference](https://img.shields.io/badge/reference-ECC-orange.svg)](https://github.com/affaan-m/everything-claude-code)
 
@@ -9,7 +9,7 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 REPO: `https://github.com/zeztto/p1zza-agent`
 HOMEPAGE: `https://p1zza.kr`
 CREATOR: `h4ppy p1zza`
-VERSION: `0.5.1`
+VERSION: `0.5.2`
 LINEAGE: fork of `Everything Claude Code (ECC)`
 UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
@@ -17,7 +17,7 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 `p1zza-agent`는 `Everything Claude Code (ECC)`를 바탕으로 발전시킨 프로젝트입니다. Claude와 Codex를 하나의 제품 안에서 함께 운영할 수 있도록 구조를 다시 정리했고, 각 런타임이 자기 방식대로 동작하면서도 공통 규칙과 협업 방식은 맞춰지도록 설계했습니다.
 
-`0.5.1`에서는 이 서비스를 처음 쓰는 사람과 AI agent가 더 빨리 적응할 수 있도록 튜토리얼 문서 2종을 추가했습니다. 이제 한국어 vibe-coding 사용자용 쉬운 가이드와 AI agent용 quickstart 문서가 제품 루트에 함께 제공됩니다.
+`0.5.2`에서는 튜토리얼 문서의 관점을 바로잡아, 이 저장소 자체가 아니라 `p1zza-agent`를 사용하는 일반 product workspace를 기준으로 다시 작성했습니다. 이제 AI agent와 한국어 사용자 모두 실제 제품 개발 문맥에서 바로 사용할 수 있는 문서를 보게 됩니다.
 
 [한국어](#korean) | [English](#english)
 
@@ -31,13 +31,12 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 이 저장소의 루트는 실제 런타임이 설치되는 위치가 아니라, 제품을 유지보수하고 배포하기 위한 기준점입니다. 실제 설치는 `claude/`와 `codex/` 패키지를 통해 각각의 런타임 디렉터리로 이루어집니다.
 
-### 0.5.1 Highlights
+### 0.5.2 Highlights
 
-- `0.5.1` 에서 제품 루트 `docs/` 아래에 튜토리얼 문서 2종 추가
-- AI agent onboarding용 `docs/ai-agent-quickstart.md` 추가
-- 한국어 vibe-coding 사용자용 `docs/vibe-coding-guide-ko.md` 추가
-- 루트 README에서 새 튜토리얼 문서로 바로 이동 가능하게 정리
-- installer 기본 version metadata를 `0.5.1` 으로 상향
+- `0.5.2` 에서 튜토리얼 문서를 일반 product development 기준으로 재작성
+- AI agent quickstart를 product workspace onboarding 문서로 교정
+- 한국어 쉬운 가이드를 실제 제품 기능 개발 예시 중심으로 재작성
+- 루트 README와 version metadata를 `0.5.2` 기준으로 갱신
 
 ### Canonical Paths
 
@@ -135,7 +134,7 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.5.1`
+- CURRENT_VERSION: `0.5.2`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance
@@ -156,13 +155,12 @@ Canonical packets:
 - RUNTIMES: `claude/`, `codex/`
 - PRODUCT_ROOT_ROLE: maintenance workspace, not a runtime package
 
-### 0.5.1 Highlights
+### 0.5.2 Highlights
 
-- `0.5.1` adds two product-level tutorial documents under root `docs/`
-- adds `docs/ai-agent-quickstart.md` for AI-agent onboarding
-- adds `docs/vibe-coding-guide-ko.md` for Korean vibe-coding users
-- links the tutorial documents directly from the root README
-- bumps installer default version metadata to `0.5.1`
+- `0.5.2` rewrites the tutorial documents around normal product-development usage
+- corrects the AI-agent quickstart so it targets product workspaces using `p1zza-agent`
+- rewrites the Korean beginner guide around real feature, bugfix, and release requests
+- updates root README and version metadata for the `0.5.2` line
 
 ### Canonical Paths
 
@@ -236,7 +234,7 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.5.1`
+- CURRENT_VERSION: `0.5.2`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance
