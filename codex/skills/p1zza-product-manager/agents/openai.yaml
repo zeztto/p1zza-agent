@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Product"
+  short_description: "Roadmap, release scope, milestones, and PM-style delivery planning"
+  default_prompt: "Use $p1zza-product-manager to shape roadmap, release scope, and project-manager-style delivery plans in p1zza-agent."

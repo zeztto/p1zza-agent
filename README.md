@@ -1,6 +1,6 @@
 # p1zza-agent
 
-[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](https://github.com/zeztto/p1zza-agent)
+[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](https://github.com/zeztto/p1zza-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Reference](https://img.shields.io/badge/reference-ECC-orange.svg)](https://github.com/affaan-m/everything-claude-code)
 
@@ -9,7 +9,7 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 REPO: `https://github.com/zeztto/p1zza-agent`
 HOMEPAGE: `https://p1zza.kr`
 CREATOR: `h4ppy p1zza`
-VERSION: `0.2.0`
+VERSION: `0.3.0`
 LINEAGE: fork of `Everything Claude Code (ECC)`
 UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
@@ -17,7 +17,7 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 `p1zza-agent`는 `Everything Claude Code (ECC)`를 바탕으로 발전시킨 프로젝트입니다. Claude와 Codex를 하나의 제품 안에서 함께 운영할 수 있도록 구조를 다시 정리했고, 각 런타임이 자기 방식대로 동작하면서도 공통 규칙과 협업 방식은 맞춰지도록 설계했습니다.
 
-`0.2.0`에서는 Codex 설치 경로와 세션 부트스트랩 규칙을 안정화했고, 문서와 설치기 출력도 더 분명하게 다듬었습니다. 이제 이 저장소는 사람에게는 이해하기 쉬운 제품 문서이면서, AI 에이전트에게는 유지보수와 설치 기준을 명확하게 전달하는 제품 루트 역할을 합니다.
+`0.3.0` 준비 단계에서는 product coordination layer를 확장하는 데 집중했습니다. `product-manager`와 `product-owner`를 추가해 제품 방향, release scope, backlog readiness, acceptance criteria를 engineering coordination과 분리해서 다룰 수 있게 했습니다.
 
 [한국어](#korean) | [English](#english)
 
@@ -31,13 +31,13 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 이 저장소의 루트는 실제 런타임이 설치되는 위치가 아니라, 제품을 유지보수하고 배포하기 위한 기준점입니다. 실제 설치는 `claude/`와 `codex/` 패키지를 통해 각각의 런타임 디렉터리로 이루어집니다.
 
-### 0.2.0 Highlights
+### 0.3.0 Highlights
 
-- `0.2.0` 에서 Codex canonical skill path를 `~/.codex/skills/p1zza-*` 로 정리
-- Codex session bootstrap, role selection, delegation planning 규칙 강화
-- packet-first communication을 기본으로 유지하고 CEO-facing human message 예외 규칙 추가
-- installer banner에 `version`, `repo`, `creator`, `homepage` metadata 출력 추가
-- root/shared 문서를 AI-agent-friendly 구조로 재작성
+- `0.3.0` 준비 범위에서 `product-manager` 와 `product-owner` agent를 추가
+- Codex skill discovery에 `p1zza-product-manager`, `p1zza-product-owner` wrapper 추가
+- product scope/roadmap 과 backlog/acceptance 를 분리해 `development-lead` overload를 줄이는 방향으로 조정
+- shared auto-dispatch 와 coordination registry에 product 계층을 반영
+- installer 기본 version metadata를 `0.3.0` 으로 상향
 
 ### Canonical Paths
 
@@ -125,7 +125,7 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.2.0`
+- CURRENT_VERSION: `0.3.0`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ---
@@ -140,13 +140,13 @@ Canonical packets:
 - RUNTIMES: `claude/`, `codex/`
 - PRODUCT_ROOT_ROLE: maintenance workspace, not a runtime package
 
-### 0.2.0 Highlights
+### 0.3.0 Highlights
 
-- `0.2.0` standardizes the Codex canonical skill path to `~/.codex/skills/p1zza-*`
-- strengthens Codex session bootstrap, role selection, and delegation planning rules
-- keeps packet-first communication as the default and adds an explicit CEO-facing human-message exception
-- adds installer banner metadata for `version`, `repo`, `creator`, and `homepage`
-- rewrites root/shared documentation into a more AI-agent-friendly structure
+- `0.3.0` adds `product-manager` and `product-owner` as first-class product coordination agents
+- adds Codex skill wrappers `p1zza-product-manager` and `p1zza-product-owner`
+- separates product scope and roadmap framing from backlog readiness and acceptance ownership
+- updates shared auto-dispatch and coordination guidance for product-layer work
+- bumps installer default version metadata to `0.3.0`
 
 ### Canonical Paths
 
@@ -211,5 +211,5 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.2.0`
+- CURRENT_VERSION: `0.3.0`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
