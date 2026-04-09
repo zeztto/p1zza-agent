@@ -137,12 +137,32 @@ function findFileIssues(filePath) {
  * @param {string} command 
  * @returns {object|null} Validation result or null if no message to validate
  */
+function extractCommitMessage(command) {
+  // Try HEREDOC format: -m "$(cat <<'EOF'\n...\nEOF\n)"
+  const heredocMatch = command.match(/<<['"]?(\w+)['"]?\n([\s\S]*?)\n\s*\1/);
+  if (heredocMatch) {
+    return heredocMatch[2].split('\n')[0].trim();
+  }
+
+  // Try simple format: -m "message" or -m 'message'
+  const simpleMatch = command.match(/(?:-m|--message)[=\s]+["']([^"']+)["']/);
+  if (simpleMatch) {
+    return simpleMatch[1].split('\n')[0].trim();
+  }
+
+  // Try unquoted: -m message
+  const unquotedMatch = command.match(/(?:-m|--message)[=\s]+(\S+)/);
+  if (unquotedMatch) {
+    return unquotedMatch[1];
+  }
+
+  return null;
+}
+
 function validateCommitMessage(command) {
-  // Extract commit message from command
-  const messageMatch = command.match(/(?:-m|--message)[=\s]+["']?([^"']+)["']?/);
-  if (!messageMatch) return null;
-  
-  const message = messageMatch[1];
+  const message = extractCommitMessage(command);
+  if (!message) return null;
+
   const issues = [];
   
   // Check conventional commit format
@@ -323,12 +343,14 @@ function evaluate(rawInput) {
     if (messageValidation && messageValidation.issues.length > 0) {
       console.error('\nCommit Message Issues:');
       for (const issue of messageValidation.issues) {
-        console.error(`  WARNING ${issue.message}`);
+        const severity = issue.type === 'format' ? 'ERROR' : 'WARNING';
+        console.error(`  ${severity} ${issue.message}`);
         if (issue.suggestion) {
           console.error(`     TIP ${issue.suggestion}`);
         }
         totalIssues++;
-        warningCount++;
+        if (issue.type === 'format') errorCount++;
+        else warningCount++;
       }
     }
     
