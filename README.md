@@ -13,19 +13,23 @@ VERSION: `0.2.0`
 LINEAGE: fork of `Everything Claude Code (ECC)`
 UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
+## About
+
+`p1zza-agent`는 `Everything Claude Code (ECC)`를 바탕으로 발전시킨 프로젝트입니다. Claude와 Codex를 하나의 제품 안에서 함께 운영할 수 있도록 구조를 다시 정리했고, 각 런타임이 자기 방식대로 동작하면서도 공통 규칙과 협업 방식은 맞춰지도록 설계했습니다.
+
+`0.2.0`에서는 Codex 설치 경로와 세션 부트스트랩 규칙을 안정화했고, 문서와 설치기 출력도 더 분명하게 다듬었습니다. 이제 이 저장소는 사람에게는 이해하기 쉬운 제품 문서이면서, AI 에이전트에게는 유지보수와 설치 기준을 명확하게 전달하는 제품 루트 역할을 합니다.
+
 [한국어](#korean) | [English](#english)
 
 ---
 
 ## Korean
 
-### Product Summary
+### 프로젝트 소개
 
-- PRODUCT: `p1zza-agent`
-- TYPE: dual-package AI agent system
-- LINEAGE: `Everything Claude Code (ECC)` 포크를 기반으로 Claude + Codex 제품 구조로 재구성
-- RUNTIMES: `claude/`, `codex/`
-- PRODUCT ROOT: repository root is maintenance workspace, not a runtime package
+`p1zza-agent`는 Claude 패키지와 Codex 패키지를 함께 유지하는 dual-package AI agent system입니다. 출발점은 `Everything Claude Code (ECC)` 포크이지만, 현재는 Claude 전용 구성을 넘어 Codex까지 함께 다루는 제품 구조로 정리되어 있습니다.
+
+이 저장소의 루트는 실제 런타임이 설치되는 위치가 아니라, 제품을 유지보수하고 배포하기 위한 기준점입니다. 실제 설치는 `claude/`와 `codex/` 패키지를 통해 각각의 런타임 디렉터리로 이루어집니다.
 
 ### 0.2.0 Highlights
 
@@ -78,6 +82,8 @@ p1zza-agent/
 
 ### Install
 
+일반적으로는 저장소를 clone한 뒤 루트 installer를 실행하면 됩니다.
+
 ```bash
 git clone https://github.com/zeztto/p1zza-agent.git
 cd p1zza-agent
@@ -105,10 +111,7 @@ curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/install.sh 
 
 ### Operating Rules
 
-- Shared semantics stay aligned across `claude/` and `codex/`.
-- Canonical packet set stays unchanged across runtimes.
-- Runtime-specific entrypoints and installation targets stay separate.
-- Project documentation must be AI-agent-friendly: explicit paths, deterministic structure, low ambiguity, packet-first when useful.
+이 프로젝트는 `claude/`와 `codex/` 사이의 공통 운영 semantics를 최대한 맞추되, 실제 entrypoint와 설치 경로는 런타임에 맞게 분리하는 원칙을 따릅니다. 또한 문서는 사람이 읽기 쉬워야 하지만, 유지보수와 설치 기준이 흔들리지 않도록 AI 에이전트가 해석하기에도 충분히 명확하게 작성합니다.
 
 Canonical packets:
 
@@ -133,9 +136,9 @@ Canonical packets:
 
 - PRODUCT: `p1zza-agent`
 - TYPE: dual-package AI agent system
-- LINEAGE: rebuilt from the `Everything Claude Code (ECC)` fork into a Claude + Codex product layout
+- LINEAGE: fork of `Everything Claude Code (ECC)`, rebuilt into a Claude + Codex product layout
 - RUNTIMES: `claude/`, `codex/`
-- PRODUCT ROOT: repository root is a maintenance workspace, not a runtime package
+- PRODUCT_ROOT_ROLE: maintenance workspace, not a runtime package
 
 ### 0.2.0 Highlights
 
@@ -147,6 +150,7 @@ Canonical packets:
 
 ### Canonical Paths
 
+- SCOPE: runtime/package reference
 - Claude entrypoint: `claude/CLAUDE.md`
 - Codex entrypoint: `codex/AGENTS.md`
 - Claude install target: `~/.claude/`
@@ -160,6 +164,8 @@ Notes:
 - Root `AGENTS.md` and `CLAUDE.md` are repository-maintenance guides, not runtime install artifacts.
 
 ### Install
+
+- DEFAULT_FLOW: clone repo, run root installer
 
 ```bash
 git clone https://github.com/zeztto/p1zza-agent.git
@@ -188,10 +194,20 @@ curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/install.sh 
 
 ### Operating Rules
 
-- Shared semantics must stay aligned across `claude/` and `codex/`.
-- The canonical packet set should remain identical across runtimes.
-- Runtime-specific entrypoints and installation targets remain separate.
-- Project documentation must be AI-agent-friendly: explicit paths, deterministic structure, low ambiguity, and packet-first when useful.
+- SHARED_SEMANTICS: keep aligned across `claude/` and `codex/`
+- CANONICAL_PACKETS: keep identical across runtimes
+- RUNTIME_SEPARATION: keep runtime-specific entrypoints and install targets separate
+- DOC_POLICY: write project docs to stay low-ambiguity and agent-readable
+
+Canonical packets:
+
+- `lead-directive-v1`
+- `lead-response-v1`
+- `lead-review-v1`
+- `qa-contract-v1`
+- `qa-response-v1`
+- `frontend-contract-v1`
+- `frontend-response-v1`
 
 ### Versioning
 
