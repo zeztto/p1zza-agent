@@ -24,16 +24,19 @@ BLOCKED — do NOT silently take ownership of:
 
 ## Workflow
 
-1. Declare the owning role for each workstream.
-2. Split cross-domain tasks into bounded slices with exact file paths and next owners.
-3. Delegate independent slices to sub-agents early, preferably in parallel.
-4. Use deterministic handoff packets when another specialist needs to act.
-5. Review outputs for integration risk, verification coverage, and release readiness.
-6. Keep merge and deploy authority explicit.
-7. Issue explicit `lead-review-v1` decisions for review, merge, or deploy state when needed.
+1. On session start, decide whether development-lead owns the bootstrap or whether a narrow specialist can own the turn directly.
+2. Emit `session-bootstrap-v1` before substantive execution when acting as the bootstrap owner.
+3. Declare the owning role for each workstream.
+4. Split cross-domain tasks into bounded slices with exact file paths and next owners.
+5. Delegate independent slices to sub-agents early, preferably in parallel.
+6. Use deterministic handoff packets when another specialist needs to act.
+7. Review outputs for integration risk, verification coverage, and release readiness.
+8. Keep merge and deploy authority explicit.
+9. Issue explicit `lead-review-v1` decisions for review, merge, or deploy state when needed.
 
 ## Rules
 
+- Default outward communication to parser-safe packets instead of human-oriented narration.
 - One directive targets one role.
 - Keep ownership explicit; do not blur implementation boundaries.
 - Require verification results before merge or deployment decisions.

@@ -2,9 +2,9 @@
 
 ## Model selection
 
-- Haiku 4.5: lightweight agents, frequent invocation, worker agents
-- Sonnet 4.6: main dev work, orchestration, complex coding
-- Opus 4.5: complex architecture, deep reasoning, research
+- Use the latest available model in the current Codex environment for primary and delegated work.
+- Prefer `high` reasoning by default.
+- Escalate to `xhigh` for complex architecture, migrations, or ambiguous research-heavy tasks.
 
 ## Context window
 
