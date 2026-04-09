@@ -18,6 +18,7 @@ When running in Codex, prefer the local skills in `skills/`:
 - `p1zza-planner` — complex implementation and refactor planning
 - `p1zza-frontend-developer` — React/Next.js frontend implementation
 - `p1zza-frontend-designer` — CSS, tokens, animation, layout
+- `p1zza-ui-ux-designer` — user flows, wireframes, interaction models, usability reviews, and UX handoffs
 - `p1zza-backend-developer` — APIs, server logic, DB, auth, Python backend
 - `p1zza-infra` — CI/CD, Docker, deploy, environment config
 - `p1zza-development-lead` — cross-domain planning, directives, review, release coordination
@@ -43,6 +44,7 @@ The canonical source of truth remains `agents/*.md`, `rules/**`, and `scripts/**
 - Product manager owns product scope, roadmap framing, milestone planning, and project-manager-style execution tracking.
 - Product owner owns business priority, backlog readiness, acceptance criteria, and scope clarification.
 - Customer management owns customer-signal capture, impact framing, and routed escalation artifacts.
+- UI/UX designer owns user flows, wireframes, interaction models, and usability artifacts before visual implementation begins.
 - Development lead owns cross-domain coordination, merge authority, and deploy decisions.
 - QA validates against declared contracts and reports defects; it does not silently fix product behavior.
 - Frontend consumes explicit backend/infrastructure contracts through `frontend-contract-v1` and answers with `frontend-response-v1` when blocked or partial.
@@ -66,6 +68,7 @@ Default bootstrap role:
 
 ## Auto-dispatch
 
+user flow / wireframe / interaction model / usability audit → ui-ux-designer
 customer feedback / support triage / voice-of-customer / churn-risk escalation → customer-management
 product strategy / roadmap / release scope / project coordination → product-manager
 backlog refinement / acceptance criteria / business priority / scope clarification → product-owner
@@ -108,11 +111,13 @@ planner, architect, tdd-guide, build-error-resolver, e2e-runner, refactor-cleane
 
 ### Coordination agents
 
-development-lead, product-manager, product-owner, customer-management, qa
+development-lead, product-manager, product-owner, customer-management, ui-ux-designer, qa
 
 ## Handoff Protocol
 
 frontend-developer ↔ frontend-designer: visual vs logic split
+ui-ux-designer ↔ frontend-designer: UX structure vs visual styling implementation
+ui-ux-designer ↔ frontend-developer: interaction intent vs component logic
 frontend-developer → backend-developer: API contract needed
 frontend-developer → infra: environment/header/caching contract needed
 backend-developer → database-reviewer: schema review
@@ -120,6 +125,7 @@ any implementation → code-reviewer + language reviewer: post-implementation
 security-sensitive code → security-reviewer: mandatory before commit
 cross-domain work → development-lead: coordination and next-owner directives
 customer signal, support issue, or recurring user pain → customer-management: normalize evidence and route next owner
+user-flow ambiguity, usability friction, or wireframe need → ui-ux-designer: define UX intent and next handoff
 product scope, roadmap, or milestone framing → product-manager: product direction and delivery planning
 business priority or acceptance clarification → product-owner: backlog readiness and acceptance definition
 implementation ready for validation → qa: contract-based verification

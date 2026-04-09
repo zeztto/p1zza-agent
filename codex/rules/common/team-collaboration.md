@@ -31,7 +31,7 @@ Canonical copy-paste packets also live in `development-lead-templates.md`.
 
 ```text
 TEMPLATE_VERSION: session-bootstrap-v1
-ACTIVE_ROLE: development-lead | planner | frontend | frontend-designer | backend | infra | qa | review
+ACTIVE_ROLE: development-lead | planner | frontend | frontend-designer | ui-ux-designer | backend | infra | product-manager | product-owner | customer-management | qa | review
 REQUEST_TYPE: implementation | planning | review | validation | migration | docs | mixed
 REQUESTED_OUTCOME: <exact outcome>
 CONSTRAINTS: <hard constraints or none>
@@ -44,7 +44,7 @@ COMMUNICATION_MODE: packet-only
 ```text
 TEMPLATE_VERSION: lead-directive-v1
 DIRECTIVE_REVISION: <revision-id>
-TARGET_ROLE: backend | infrastructure | frontend | qa
+TARGET_ROLE: backend | infrastructure | frontend | ui-ux-designer | product-manager | product-owner | customer-management | qa
 GOAL: <exact outcome>
 OWNERSHIP: <owned surface and out-of-scope areas>
 INPUTS: <required packets, PR refs, docs, environments>
@@ -75,7 +75,7 @@ NEXT_DIRECTIVE_REQUEST: none | request-next-task
 ```text
 TEMPLATE_VERSION: lead-review-v1
 REVIEW_REVISION: <revision-id>
-TARGET_ROLE: backend | infrastructure | frontend | qa | project
+TARGET_ROLE: backend | infrastructure | frontend | ui-ux-designer | product-manager | product-owner | customer-management | qa | project
 STATUS: approved | changes-required | blocked
 FINDINGS: <exact review findings or none>
 REQUIRED_ACTIONS: <what must happen next or none>

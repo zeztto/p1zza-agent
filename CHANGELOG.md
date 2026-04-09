@@ -8,10 +8,37 @@ This file is AI-agent-friendly by default.
 - CHANGE TYPE: product-level summary, not commit dump
 - LINEAGE: `p1zza-agent` is maintained as an `Everything Claude Code (ECC)` fork adapted for Claude + Codex
 
-## 0.4.0
+## 0.5.0
 
 DATE: `2026-04-09`
 STATUS: preparing-in-repo
+
+SUMMARY:
+
+- User-flow and usability work now has a dedicated owner through `ui-ux-designer`.
+- A canonical UX packet layer was added so flow discovery and implementation handoff can be separated from styling work.
+- Claude and Codex runtime dispatch guidance, skill routing, and installer metadata were aligned for the `0.5.0` line.
+
+CHANGES:
+
+- added `ui-ux-designer` agent definitions to both `claude/agents/` and `codex/agents/`
+- added Codex skill `p1zza-ui-ux-designer`
+- added `ux-design-templates.md` to both runtime packages
+- added `ux-brief-v1` and `ux-handoff-v1` as canonical packet templates
+- clarified `frontend-designer` as the visual styling implementation owner after UX intent is defined
+- updated shared auto-dispatch and coordination registry for wireframes, interaction models, and usability routing
+- product version bumped from `0.4.0` to `0.5.0`
+
+IMPACT:
+
+- UX structure can now be handed off separately from styling implementation
+- flow and usability work are less likely to be mixed into CSS-only tasks
+- the product/design collaboration layer is more explicit
+
+## 0.4.0
+
+DATE: `2026-04-09`
+STATUS: released-in-repo
 
 SUMMARY:
 

@@ -1,6 +1,6 @@
 # p1zza-agent
 
-[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](https://github.com/zeztto/p1zza-agent)
+[![Version](https://img.shields.io/badge/version-0.5.0-blue.svg)](https://github.com/zeztto/p1zza-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Reference](https://img.shields.io/badge/reference-ECC-orange.svg)](https://github.com/affaan-m/everything-claude-code)
 
@@ -9,7 +9,7 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 REPO: `https://github.com/zeztto/p1zza-agent`
 HOMEPAGE: `https://p1zza.kr`
 CREATOR: `h4ppy p1zza`
-VERSION: `0.4.0`
+VERSION: `0.5.0`
 LINEAGE: fork of `Everything Claude Code (ECC)`
 UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
@@ -17,7 +17,7 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 `p1zza-agent`는 `Everything Claude Code (ECC)`를 바탕으로 발전시킨 프로젝트입니다. Claude와 Codex를 하나의 제품 안에서 함께 운영할 수 있도록 구조를 다시 정리했고, 각 런타임이 자기 방식대로 동작하면서도 공통 규칙과 협업 방식은 맞춰지도록 설계했습니다.
 
-`0.4.0`에서는 `customer-management` role을 추가해 customer signal을 PM/PO와 engineering으로 넘기는 정식 coordination loop를 만들었습니다. 이제 support, feedback, churn-risk, recurring user pain은 별도 role과 canonical packet을 통해 product workflow로 연결됩니다.
+`0.5.0`에서는 `ui-ux-designer` role을 추가해 user flow, wireframe, interaction model, usability artifact를 visual styling implementation과 분리했습니다. 이제 UX structure는 별도 role과 canonical packet으로 정의되고, `frontend-designer`는 styling implementation owner로 더 명확해졌습니다.
 
 [한국어](#korean) | [English](#english)
 
@@ -31,13 +31,13 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 이 저장소의 루트는 실제 런타임이 설치되는 위치가 아니라, 제품을 유지보수하고 배포하기 위한 기준점입니다. 실제 설치는 `claude/`와 `codex/` 패키지를 통해 각각의 런타임 디렉터리로 이루어집니다.
 
-### 0.4.0 Highlights
+### 0.5.0 Highlights
 
-- `0.4.0` 에서 `customer-management` role을 Claude/Codex runtime에 추가
-- Codex skill discovery에 `p1zza-customer-management` wrapper 추가
-- `customer-signal-v1`, `customer-handoff-v1` packet template 추가
-- customer feedback/support triage를 PM/PO/lead/QA handoff와 연결하는 canonical loop 추가
-- installer 기본 version metadata를 `0.4.0` 으로 상향
+- `0.5.0` 에서 `ui-ux-designer` role을 Claude/Codex runtime에 추가
+- Codex skill discovery에 `p1zza-ui-ux-designer` wrapper 추가
+- `ux-brief-v1`, `ux-handoff-v1` packet template 추가
+- `frontend-designer`와의 경계를 visual styling implementation 중심으로 재정의
+- installer 기본 version metadata를 `0.5.0` 으로 상향
 
 ### Canonical Paths
 
@@ -124,10 +124,12 @@ Canonical packets:
 - `frontend-response-v1`
 - `customer-signal-v1`
 - `customer-handoff-v1`
+- `ux-brief-v1`
+- `ux-handoff-v1`
 
 ### Versioning
 
-- CURRENT_VERSION: `0.4.0`
+- CURRENT_VERSION: `0.5.0`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance
@@ -148,13 +150,13 @@ Canonical packets:
 - RUNTIMES: `claude/`, `codex/`
 - PRODUCT_ROOT_ROLE: maintenance workspace, not a runtime package
 
-### 0.4.0 Highlights
+### 0.5.0 Highlights
 
-- `0.4.0` adds `customer-management` as a first-class coordination role in both runtimes
-- adds Codex skill wrapper `p1zza-customer-management`
-- introduces `customer-signal-v1` and `customer-handoff-v1` packet templates
-- creates a canonical loop from customer-facing signals into PM/PO/lead/QA workflows
-- bumps installer default version metadata to `0.4.0`
+- `0.5.0` adds `ui-ux-designer` as a first-class coordination/design role in both runtimes
+- adds Codex skill wrapper `p1zza-ui-ux-designer`
+- introduces `ux-brief-v1` and `ux-handoff-v1` packet templates
+- separates UX structure and usability work from visual styling implementation
+- bumps installer default version metadata to `0.5.0`
 
 ### Canonical Paths
 
@@ -218,10 +220,12 @@ Canonical packets:
 - `frontend-response-v1`
 - `customer-signal-v1`
 - `customer-handoff-v1`
+- `ux-brief-v1`
+- `ux-handoff-v1`
 
 ### Versioning
 
-- CURRENT_VERSION: `0.4.0`
+- CURRENT_VERSION: `0.5.0`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance

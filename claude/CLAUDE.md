@@ -27,7 +27,7 @@ When a project-level directive conflicts with global settings, do not silently f
 ```
 claude/
   AGENTS.md      — dispatch rules, role boundaries, handoff protocol
-  agents/        — 27 subagent role definitions
+  agents/        — 28 subagent role definitions
   rules/         — always-follow guidelines (common, web, typescript, python)
   scripts/       — hook scripts and utilities
   mcp-configs/   — MCP server configurations
@@ -55,14 +55,15 @@ See `AGENTS.md` for the full dispatch table and role boundary matrix.
 - Product manager owns product scope, roadmap framing, milestone planning, and project-manager-style execution tracking.
 - Product owner owns business priority, backlog readiness, acceptance criteria, and scope clarification.
 - Customer management owns customer-signal capture, impact framing, and routed escalation artifacts.
+- UI/UX designer owns user flows, wireframes, interaction models, and usability artifacts.
 - Development lead owns cross-domain coordination, merge authority, and deploy decisions.
 - QA validates against declared contracts; it does not change product behavior.
 
 ## Canonical Packets
 
-`lead-directive-v1`, `lead-response-v1`, `lead-review-v1`, `qa-contract-v1`, `qa-response-v1`, `frontend-contract-v1`, `frontend-response-v1`, `customer-signal-v1`, `customer-handoff-v1`
+`lead-directive-v1`, `lead-response-v1`, `lead-review-v1`, `qa-contract-v1`, `qa-response-v1`, `frontend-contract-v1`, `frontend-response-v1`, `customer-signal-v1`, `customer-handoff-v1`, `ux-brief-v1`, `ux-handoff-v1`
 
-Templates: `rules/common/development-lead-templates.md`, `rules/common/qa-templates.md`, `rules/common/customer-management-templates.md`
+Templates: `rules/common/development-lead-templates.md`, `rules/common/qa-templates.md`, `rules/common/customer-management-templates.md`, `rules/web/ux-design-templates.md`
 
 ## Knowledge Capture
 

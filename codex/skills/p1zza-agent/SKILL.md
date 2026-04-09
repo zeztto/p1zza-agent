@@ -32,6 +32,7 @@ Use this as the umbrella skill for the Codex-focused p1zza-agent package.
 ## Routing
 
 - Default session bootstrap or coordination-heavy work -> `../p1zza-development-lead/SKILL.md`
+- User flow, wireframe, interaction model, or usability work -> `../p1zza-ui-ux-designer/SKILL.md`
 - Customer feedback, support triage, recurring user pain, or churn-risk signal -> `../p1zza-customer-management/SKILL.md`
 - Product strategy, roadmap shaping, release scope, or project-manager-style delivery coordination -> `../p1zza-product-manager/SKILL.md`
 - Backlog refinement, acceptance criteria, business priority, or scope clarification -> `../p1zza-product-owner/SKILL.md`
