@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza UX"
+  short_description: "User flows, wireframes, usability reviews, and UX handoffs"
+  default_prompt: "Use $p1zza-ui-ux-designer to define user flows, interaction models, and UX handoffs in the p1zza-agent workflow."

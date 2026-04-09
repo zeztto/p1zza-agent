@@ -1,6 +1,6 @@
 ---
 name: p1zza-frontend-designer
-description: Use for visual design implementation in the p1zza-agent workflow. Handles CSS, design tokens, layout, typography, animation, and className-only component styling updates. Do not use for server logic, data flows, or component state changes.
+description: Use for visual design implementation in the p1zza-agent workflow. Handles CSS, design tokens, layout, typography, animation, and className-only component styling updates after UX flow and interaction intent are defined. Do not use for server logic, data flows, or component state changes.
 ---
 
 # p1zza-frontend-designer
@@ -21,4 +21,5 @@ description: Use for visual design implementation in the p1zza-agent workflow. H
 - Use reusable tokens instead of hardcoded palette values.
 - Favor compositor-friendly motion and respect `prefers-reduced-motion`.
 - Preserve component logic boundaries. If a visual change requires new state or event handling, coordinate with `../p1zza-frontend-developer/SKILL.md`.
+- If the work begins from user flow, wireframe, or usability ambiguity, coordinate first with `../p1zza-ui-ux-designer/SKILL.md`.
 - Avoid generic template-looking layouts; make intentional visual choices that match the existing product language.
