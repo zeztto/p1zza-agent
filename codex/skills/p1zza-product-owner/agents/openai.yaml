@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Owner"
+  short_description: "Backlog priority, acceptance criteria, and scope clarification"
+  default_prompt: "Use $p1zza-product-owner to define business priority, backlog readiness, and acceptance criteria in p1zza-agent."

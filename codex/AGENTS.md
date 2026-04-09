@@ -20,6 +20,8 @@ When running in Codex, prefer the local skills in `skills/`:
 - `p1zza-backend-developer` — APIs, server logic, DB, auth, Python backend
 - `p1zza-infra` — CI/CD, Docker, deploy, environment config
 - `p1zza-development-lead` — cross-domain planning, directives, review, release coordination
+- `p1zza-product-manager` — product strategy, roadmap, release scope, and project-manager-style delivery coordination
+- `p1zza-product-owner` — backlog ownership, acceptance criteria, business priority, and scope clarification
 - `p1zza-qa` — validation, regression, defect reporting, release-risk assessment
 - `p1zza-code-reviewer` — post-change quality review
 - `p1zza-security-reviewer` — security review for auth, input, and sensitive flows
@@ -36,6 +38,8 @@ The canonical source of truth remains `agents/*.md`, `rules/**`, and `scripts/**
 - Use sub-agents aggressively for independent slices, preferably in parallel.
 - When the work has 2 or more independent slices, or when analysis and implementation can proceed in parallel, dispatch sub-agents early instead of waiting for local completion.
 - Default sub-agents to the latest available model with `high` reasoning; use `xhigh` for complex planning, migration, and cross-domain coordination.
+- Product manager owns product scope, roadmap framing, milestone planning, and project-manager-style execution tracking.
+- Product owner owns business priority, backlog readiness, acceptance criteria, and scope clarification.
 - Development lead owns cross-domain coordination, merge authority, and deploy decisions.
 - QA validates against declared contracts and reports defects; it does not silently fix product behavior.
 - Frontend consumes explicit backend/infrastructure contracts through `frontend-contract-v1` and answers with `frontend-response-v1` when blocked or partial.
@@ -59,6 +63,8 @@ Default bootstrap role:
 
 ## Auto-dispatch
 
+product strategy / roadmap / release scope / project coordination → product-manager
+backlog refinement / acceptance criteria / business priority / scope clarification → product-owner
 frontend feature (components/hooks/state/routing) → frontend-developer
 visual design (CSS/animation/tokens/layout) → frontend-designer
 interactive UI components → accessibility-reviewer
@@ -98,7 +104,7 @@ planner, architect, tdd-guide, build-error-resolver, e2e-runner, refactor-cleane
 
 ### Coordination agents
 
-development-lead, qa
+development-lead, product-manager, product-owner, qa
 
 ## Handoff Protocol
 
@@ -109,6 +115,8 @@ backend-developer → database-reviewer: schema review
 any implementation → code-reviewer + language reviewer: post-implementation
 security-sensitive code → security-reviewer: mandatory before commit
 cross-domain work → development-lead: coordination and next-owner directives
+product scope, roadmap, or milestone framing → product-manager: product direction and delivery planning
+business priority or acceptance clarification → product-owner: backlog readiness and acceptance definition
 implementation ready for validation → qa: contract-based verification
 
 ## Execution

@@ -1,4 +1,4 @@
-# p1zza-agent for Codex
+# p1zza-agent for Claude
 
 ## Core Instructions
 
@@ -7,9 +7,9 @@
 - Use `rules/` as the canonical rule set. Do not duplicate those rules unless a task needs a focused reminder.
 - Keep implementation agents within their file-path boundaries. Review skills are read-only unless the user explicitly asks for remediation.
 
-## Codex Skills
+## Claude Skills
 
-When running in Codex, prefer the local skills in `skills/`:
+When running in Claude, use the local role and rule system in this package:
 
 - `p1zza-agent` — umbrella router for installation, migration, and agent-system work
 - `p1zza-planner` — complex implementation and refactor planning
@@ -18,11 +18,13 @@ When running in Codex, prefer the local skills in `skills/`:
 - `p1zza-backend-developer` — APIs, server logic, DB, auth, Python backend
 - `p1zza-infra` — CI/CD, Docker, deploy, environment config
 - `p1zza-development-lead` — cross-domain planning, directives, review, release coordination
+- `p1zza-product-manager` — product strategy, roadmap, release scope, and project-manager-style delivery coordination
+- `p1zza-product-owner` — backlog ownership, acceptance criteria, business priority, and scope clarification
 - `p1zza-qa` — validation, regression, defect reporting, release-risk assessment
 - `p1zza-code-reviewer` — post-change quality review
 - `p1zza-security-reviewer` — security review for auth, input, and sensitive flows
 
-The canonical source of truth remains `agents/*.md`, `rules/**`, and `scripts/**`. The Codex skills wrap those documents for Codex discovery.
+The canonical source of truth remains `agents/*.md`, `rules/**`, and `scripts/**`.
 
 ## Operating Model
 
@@ -31,6 +33,8 @@ The canonical source of truth remains `agents/*.md`, `rules/**`, and `scripts/**
 - Use deterministic plain-text handoff packets for cross-domain coordination.
 - Use sub-agents aggressively for independent slices, preferably in parallel.
 - Default sub-agents to the latest available model with `high` reasoning; use `xhigh` for complex planning, migration, and cross-domain coordination.
+- Product manager owns product scope, roadmap framing, milestone planning, and project-manager-style execution tracking.
+- Product owner owns business priority, backlog readiness, acceptance criteria, and scope clarification.
 - Development lead owns cross-domain coordination, merge authority, and deploy decisions.
 - QA validates against declared contracts and reports defects; it does not silently fix product behavior.
 - Frontend consumes explicit backend/infrastructure contracts through `frontend-contract-v1` and answers with `frontend-response-v1` when blocked or partial.
@@ -39,6 +43,8 @@ The canonical source of truth remains `agents/*.md`, `rules/**`, and `scripts/**
 
 ## Auto-dispatch
 
+product strategy / roadmap / release scope / project coordination → product-manager
+backlog refinement / acceptance criteria / business priority / scope clarification → product-owner
 frontend feature (components/hooks/state/routing) → frontend-developer
 visual design (CSS/animation/tokens/layout) → frontend-designer
 interactive UI components → accessibility-reviewer
@@ -78,7 +84,7 @@ planner, architect, tdd-guide, build-error-resolver, e2e-runner, refactor-cleane
 
 ### Coordination agents
 
-development-lead, qa
+development-lead, product-manager, product-owner, qa
 
 ## Handoff Protocol
 
@@ -89,6 +95,8 @@ backend-developer → database-reviewer: schema review
 any implementation → code-reviewer + language reviewer: post-implementation
 security-sensitive code → security-reviewer: mandatory before commit
 cross-domain work → development-lead: coordination and next-owner directives
+product scope, roadmap, or milestone framing → product-manager: product direction and delivery planning
+business priority or acceptance clarification → product-owner: backlog readiness and acceptance definition
 implementation ready for validation → qa: contract-based verification
 
 ## Execution

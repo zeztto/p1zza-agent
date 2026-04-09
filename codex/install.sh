@@ -4,7 +4,7 @@ set -euo pipefail
 P1ZZA_REPO_URL="${P1ZZA_REPO_URL:-https://github.com/zeztto/p1zza-agent}"
 P1ZZA_REPO_REF="${P1ZZA_REPO_REF:-main}"
 P1ZZA_TARBALL_URL="${P1ZZA_TARBALL_URL:-https://codeload.github.com/zeztto/p1zza-agent/tar.gz/refs/heads/$P1ZZA_REPO_REF}"
-P1ZZA_VERSION="${P1ZZA_VERSION:-0.2.0}"
+P1ZZA_VERSION="${P1ZZA_VERSION:-0.3.0}"
 P1ZZA_LINK_SHARED_SKILLS="${P1ZZA_LINK_SHARED_SKILLS:-0}"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"

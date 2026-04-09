@@ -27,7 +27,7 @@ When a project-level directive conflicts with global settings, do not silently f
 ```
 claude/
   AGENTS.md      — dispatch rules, role boundaries, handoff protocol
-  agents/        — 24 subagent role definitions
+  agents/        — 26 subagent role definitions
   rules/         — always-follow guidelines (common, web, typescript, python)
   scripts/       — hook scripts and utilities
   mcp-configs/   — MCP server configurations
@@ -51,6 +51,8 @@ See `AGENTS.md` for the full dispatch table and role boundary matrix.
 
 - Implementation agents have STRICT file path restrictions.
 - Reviewers are read-only.
+- Product manager owns product scope, roadmap framing, milestone planning, and project-manager-style execution tracking.
+- Product owner owns business priority, backlog readiness, acceptance criteria, and scope clarification.
 - Development lead owns cross-domain coordination, merge authority, and deploy decisions.
 - QA validates against declared contracts; it does not change product behavior.
 
