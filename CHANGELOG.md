@@ -8,10 +8,36 @@ This file is AI-agent-friendly by default.
 - CHANGE TYPE: product-level summary, not commit dump
 - LINEAGE: `p1zza-agent` is maintained as an `Everything Claude Code (ECC)` fork adapted for Claude + Codex
 
-## 0.3.1
+## 0.4.0
 
 DATE: `2026-04-09`
 STATUS: preparing-in-repo
+
+SUMMARY:
+
+- Customer-facing signals now have a dedicated coordination role through `customer-management`.
+- A canonical packet layer was added so support issues, feedback, and churn-risk signals can be routed cleanly into product and engineering workflows.
+- Claude and Codex runtime dispatch guidance, skill routing, and installer metadata were aligned for the `0.4.0` line.
+
+CHANGES:
+
+- added `customer-management` agent definitions to both `claude/agents/` and `codex/agents/`
+- added Codex skill `p1zza-customer-management`
+- added `customer-management-templates.md` to both runtime packages
+- added `customer-signal-v1` and `customer-handoff-v1` as canonical packet templates
+- updated shared auto-dispatch and coordination registry for customer feedback, support triage, and escalation routing
+- product version bumped from `0.3.1` to `0.4.0`
+
+IMPACT:
+
+- customer feedback can now be normalized before it reaches PM/PO or engineering
+- product/customer handoff semantics are more deterministic
+- the next release layer can build on a complete product-to-customer loop
+
+## 0.3.1
+
+DATE: `2026-04-09`
+STATUS: released-in-repo
 
 SUMMARY:
 
