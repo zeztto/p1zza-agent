@@ -2,6 +2,22 @@
 
 Use deterministic plain-text packets when handing work between roles.
 
+## External Communication
+
+- Default all outward communication to AI-agent-friendly packets or terse machine-readable status blocks.
+- Do not add human-targeted explanatory narration when a packet is sufficient.
+- If the user explicitly asks for explanation, keep the packet first and put any prose after it.
+- If the user explicitly asks for a stakeholder-facing human message, create it as a separate deliverable after the packet output.
+- For CEO-facing messages, write in the CEO's language unless the user asks for another language.
+- Keep field order stable and use `none` for empty values.
+
+## Session Bootstrap
+
+- Every fresh thread or materially changed request begins with `session-bootstrap-v1`.
+- The bootstrap packet must declare the active role, requested outcome, constraints, work slices, and delegation plan.
+- Default the bootstrap owner to development lead unless the request is already narrow, single-role, and packet-linked.
+- If the work naturally splits into multiple independent slices, the bootstrap packet must include planned sub-agent delegation.
+
 ## Delegation Policy
 
 - Prefer parallel sub-agent execution for independent slices.
@@ -12,6 +28,18 @@ Use deterministic plain-text packets when handing work between roles.
 ## Development Lead Directive
 
 Canonical copy-paste packets also live in `development-lead-templates.md`.
+
+```text
+TEMPLATE_VERSION: session-bootstrap-v1
+ACTIVE_ROLE: development-lead | planner | frontend | frontend-designer | backend | infra | qa | review
+REQUEST_TYPE: implementation | planning | review | validation | migration | docs | mixed
+REQUESTED_OUTCOME: <exact outcome>
+CONSTRAINTS: <hard constraints or none>
+WORK_SLICES: <slice list with owners or one owned slice>
+DELEGATION_PLAN: <parallel delegates and ownership or none>
+FIRST_ACTION: <next concrete action>
+COMMUNICATION_MODE: packet-only
+```
 
 ```text
 TEMPLATE_VERSION: lead-directive-v1
