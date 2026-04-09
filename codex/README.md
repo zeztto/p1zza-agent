@@ -25,13 +25,13 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/
 
 로컬 clone에서 실행하려면 `cd codex && ./install.sh`를 사용하면 됩니다.
 
-This installs the managed p1zza files directly into `~/.codex`, preserves unrelated Codex state files, and relinks `~/.agents/skills/p1zza-*`.
+This installs the managed p1zza files directly into `~/.codex`, preserves unrelated Codex state files, relinks `~/.agents/skills/p1zza-*`, and keeps the Codex runtime entrypoint at `~/.codex/AGENTS.md` without copying `CLAUDE.md` into the Codex root.
 
 ## Recommended Use
 
 1. Use this directory as the Codex workspace root when you want the self-contained Codex package.
 2. Run `./install.sh` when you want the package installed directly into `~/.codex`.
-3. Keep root-level Claude installer files separate from this package.
+3. Keep root-level Claude installer files separate from this package and out of `~/.codex`.
 
 ## Notes
 

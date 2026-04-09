@@ -102,7 +102,16 @@ local_install() {
     echo "Backed up legacy nested package to: $CODEX_LEGACY_BACKUP_PATH"
   fi
 
-  for item in AGENTS.md CLAUDE.md agents rules docs; do
+  target_path="$CODEX_TARGET_ROOT/CLAUDE.md"
+  if [ -e "$target_path" ] || [ -L "$target_path" ]; then
+    if [ -z "$CODEX_BACKUP_PATH" ]; then
+      CODEX_BACKUP_PATH="$BACKUP_ROOT/codex-root-$TIMESTAMP"
+      mkdir -p "$CODEX_BACKUP_PATH"
+    fi
+    mv "$target_path" "$CODEX_BACKUP_PATH/CLAUDE.md"
+  fi
+
+  for item in AGENTS.md agents rules docs; do
     target_path="$CODEX_TARGET_ROOT/$item"
     if [ -e "$target_path" ] || [ -L "$target_path" ]; then
       if [ -z "$CODEX_BACKUP_PATH" ]; then
@@ -123,7 +132,6 @@ local_install() {
   fi
 
   cp "$SCRIPT_DIR/AGENTS.md" "$CODEX_TARGET_ROOT/"
-  cp "$SCRIPT_DIR/CLAUDE.md" "$CODEX_TARGET_ROOT/"
   cp -R "$SCRIPT_DIR/agents" "$CODEX_TARGET_ROOT/"
   cp -R "$SCRIPT_DIR/rules" "$CODEX_TARGET_ROOT/"
   cp -R "$SCRIPT_DIR/docs" "$CODEX_TARGET_ROOT/"

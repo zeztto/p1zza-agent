@@ -195,7 +195,16 @@ install_codex() {
     echo "[Codex] Backed up legacy nested package to $CODEX_LEGACY_BACKUP_PATH"
   fi
 
-  for item in AGENTS.md CLAUDE.md agents rules docs; do
+  target_path="$CODEX_TARGET_ROOT/CLAUDE.md"
+  if [ -e "$target_path" ] || [ -L "$target_path" ]; then
+    if [ -z "$CODEX_BACKUP_PATH" ]; then
+      CODEX_BACKUP_PATH="$BACKUP_ROOT/codex-root-$TIMESTAMP"
+      mkdir -p "$CODEX_BACKUP_PATH"
+    fi
+    mv "$target_path" "$CODEX_BACKUP_PATH/CLAUDE.md"
+  fi
+
+  for item in AGENTS.md agents rules docs; do
     target_path="$CODEX_TARGET_ROOT/$item"
     if [ -e "$target_path" ] || [ -L "$target_path" ]; then
       if [ -z "$CODEX_BACKUP_PATH" ]; then
@@ -216,7 +225,6 @@ install_codex() {
   fi
 
   cp "$CODEX_SRC/AGENTS.md" "$CODEX_TARGET_ROOT/"
-  cp "$CODEX_SRC/CLAUDE.md" "$CODEX_TARGET_ROOT/"
   cp -R "$CODEX_SRC/agents" "$CODEX_TARGET_ROOT/"
   cp -R "$CODEX_SRC/rules" "$CODEX_TARGET_ROOT/"
   cp -R "$CODEX_SRC/docs" "$CODEX_TARGET_ROOT/"
