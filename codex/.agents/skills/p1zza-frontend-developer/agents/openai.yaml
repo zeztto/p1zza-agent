@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Frontend"
+  short_description: "React and Next.js implementation within p1zza boundaries"
+  default_prompt: "Use $p1zza-frontend-developer to implement frontend logic while staying within p1zza-agent file boundaries."

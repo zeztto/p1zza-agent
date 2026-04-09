@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Backend"
+  short_description: "API, server, DB, auth, and Python backend work"
+  default_prompt: "Use $p1zza-backend-developer to implement backend logic within p1zza-agent boundaries."

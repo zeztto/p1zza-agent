@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Planner"
+  short_description: "Plan complex features, refactors, and migrations"
+  default_prompt: "Use $p1zza-planner to create a phased implementation plan with exact file paths and risks."

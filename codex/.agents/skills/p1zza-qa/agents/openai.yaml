@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza QA"
+  short_description: "Validate changes, report defects, and assess release risk"
+  default_prompt: "Use $p1zza-qa to validate implementation against explicit contracts and environments."

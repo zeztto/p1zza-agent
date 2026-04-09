@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Designer"
+  short_description: "CSS, tokens, layout, and motion within p1zza boundaries"
+  default_prompt: "Use $p1zza-frontend-designer to implement visual design changes without crossing into app logic."

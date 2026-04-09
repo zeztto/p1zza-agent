@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Security"
+  short_description: "Review sensitive code for vulnerabilities and safe remediation"
+  default_prompt: "Use $p1zza-security-reviewer to audit sensitive code paths in the p1zza-agent style."

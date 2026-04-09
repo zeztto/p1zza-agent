@@ -1,0 +1,4 @@
+interface:
+  display_name: "p1zza-agent"
+  short_description: "Route work through the p1zza-agent operating model"
+  default_prompt: "Use $p1zza-agent to work in the p1zza-agent style and route to the right specialist skill."

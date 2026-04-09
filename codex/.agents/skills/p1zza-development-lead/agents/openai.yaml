@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Lead"
+  short_description: "Coordinate cross-domain work, reviews, and release decisions"
+  default_prompt: "Use $p1zza-development-lead to coordinate multi-role work in the p1zza-agent workflow."

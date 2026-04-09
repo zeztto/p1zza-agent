@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Infra"
+  short_description: "CI/CD, Docker, deploy, and environment configuration"
+  default_prompt: "Use $p1zza-infra to handle build, deployment, and infrastructure changes within p1zza-agent boundaries."
