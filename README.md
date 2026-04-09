@@ -1,6 +1,6 @@
 # p1zza-agent
 
-[![Version](https://img.shields.io/badge/version-0.3.1-blue.svg)](https://github.com/zeztto/p1zza-agent)
+[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](https://github.com/zeztto/p1zza-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Reference](https://img.shields.io/badge/reference-ECC-orange.svg)](https://github.com/affaan-m/everything-claude-code)
 
@@ -9,7 +9,7 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 REPO: `https://github.com/zeztto/p1zza-agent`
 HOMEPAGE: `https://p1zza.kr`
 CREATOR: `h4ppy p1zza`
-VERSION: `0.3.1`
+VERSION: `0.4.0`
 LINEAGE: fork of `Everything Claude Code (ECC)`
 UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
@@ -17,7 +17,7 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 `p1zza-agent`는 `Everything Claude Code (ECC)`를 바탕으로 발전시킨 프로젝트입니다. Claude와 Codex를 하나의 제품 안에서 함께 운영할 수 있도록 구조를 다시 정리했고, 각 런타임이 자기 방식대로 동작하면서도 공통 규칙과 협업 방식은 맞춰지도록 설계했습니다.
 
-`0.3.1`에서는 문서 유지와 version logging 자체를 agent system의 product capability로 명시했습니다. 이제 versioned workspace가 `README.md`와 `CHANGELOG.md`를 함께 정의한다면, 그 업데이트는 선택적인 housekeeping이 아니라 제품 변화가 있을 때 런타임이 수행해야 하는 기본 서비스 동작으로 취급합니다.
+`0.4.0`에서는 `customer-management` role을 추가해 customer signal을 PM/PO와 engineering으로 넘기는 정식 coordination loop를 만들었습니다. 이제 support, feedback, churn-risk, recurring user pain은 별도 role과 canonical packet을 통해 product workflow로 연결됩니다.
 
 [한국어](#korean) | [English](#english)
 
@@ -31,12 +31,13 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 이 저장소의 루트는 실제 런타임이 설치되는 위치가 아니라, 제품을 유지보수하고 배포하기 위한 기준점입니다. 실제 설치는 `claude/`와 `codex/` 패키지를 통해 각각의 런타임 디렉터리로 이루어집니다.
 
-### 0.3.1 Highlights
+### 0.4.0 Highlights
 
-- `0.3.1` 에서 versioned workspace의 `README.md` 유지와 `CHANGELOG.md` version log 작성을 product capability로 승격
-- Claude/Codex runtime entrypoint와 shared workflow에 docs/versioning 의무를 반영
-- `doc-updater` 역할이 version log가 정의된 workspace에서는 CHANGELOG까지 canonical 관리 대상으로 다루도록 확장
-- versioned workspace에서 product-visible change가 생기면 README와 CHANGELOG를 함께 갱신하는 규칙을 런타임 차원에 고정
+- `0.4.0` 에서 `customer-management` role을 Claude/Codex runtime에 추가
+- Codex skill discovery에 `p1zza-customer-management` wrapper 추가
+- `customer-signal-v1`, `customer-handoff-v1` packet template 추가
+- customer feedback/support triage를 PM/PO/lead/QA handoff와 연결하는 canonical loop 추가
+- installer 기본 version metadata를 `0.4.0` 으로 상향
 
 ### Canonical Paths
 
@@ -121,10 +122,12 @@ Canonical packets:
 - `qa-response-v1`
 - `frontend-contract-v1`
 - `frontend-response-v1`
+- `customer-signal-v1`
+- `customer-handoff-v1`
 
 ### Versioning
 
-- CURRENT_VERSION: `0.3.1`
+- CURRENT_VERSION: `0.4.0`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance
@@ -145,12 +148,13 @@ Canonical packets:
 - RUNTIMES: `claude/`, `codex/`
 - PRODUCT_ROOT_ROLE: maintenance workspace, not a runtime package
 
-### 0.3.1 Highlights
+### 0.4.0 Highlights
 
-- `0.3.1` promotes `README.md` maintenance and `CHANGELOG.md` version logging into first-class product capabilities for versioned workspaces that define both files
-- updates Claude and Codex runtime guidance so docs/versioning are required parts of product-visible changes
-- expands `doc-updater` to treat changelog upkeep as canonical documentation work when a workspace defines one
-- hardens the rule that README and CHANGELOG move together for user-visible product changes in versioned workspaces
+- `0.4.0` adds `customer-management` as a first-class coordination role in both runtimes
+- adds Codex skill wrapper `p1zza-customer-management`
+- introduces `customer-signal-v1` and `customer-handoff-v1` packet templates
+- creates a canonical loop from customer-facing signals into PM/PO/lead/QA workflows
+- bumps installer default version metadata to `0.4.0`
 
 ### Canonical Paths
 
@@ -212,10 +216,12 @@ Canonical packets:
 - `qa-response-v1`
 - `frontend-contract-v1`
 - `frontend-response-v1`
+- `customer-signal-v1`
+- `customer-handoff-v1`
 
 ### Versioning
 
-- CURRENT_VERSION: `0.3.1`
+- CURRENT_VERSION: `0.4.0`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance

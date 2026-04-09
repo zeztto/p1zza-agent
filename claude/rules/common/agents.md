@@ -2,6 +2,7 @@
 
 ## Auto-dispatch (no user prompt needed)
 
+customer feedback / support triage / voice-of-customer / churn-risk escalation → customer-management
 product strategy / roadmap / release scope / project coordination → product-manager
 backlog refinement / acceptance criteria / business priority / scope clarification → product-owner
 frontend feature → frontend-developer
@@ -32,13 +33,14 @@ frontend-reviewer, accessibility-reviewer, code-reviewer, typescript-reviewer, p
 planner, architect, tdd-guide, build-error-resolver, e2e-runner, refactor-cleaner, doc-updater, docs-lookup
 
 ### Coordination
-development-lead, product-manager, product-owner, qa
+development-lead, product-manager, product-owner, customer-management, qa
 
 ## Role Boundaries
 
 Implementation agents have STRICT file path restrictions. See AGENTS.md for boundary table.
 Reviewers are read-only. Implementation agents must not cross into other domains.
 Product roles own product-definition artifacts, prioritization, and acceptance criteria. They do not take over code implementation, merge authority, or deployment decisions.
+Customer management owns customer-signal artifacts, impact framing, and routed escalation context. It does not take over backlog priority, public communications, or engineering decisions.
 Development lead coordinates cross-domain work without silently taking implementation ownership.
 QA validates against contracts and reports defects; it does not force passes by changing product behavior.
 Frontend consumes explicit contracts for backend and infrastructure behavior instead of guessing.

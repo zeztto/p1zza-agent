@@ -1,0 +1,4 @@
+interface:
+  display_name: "P1zza Customer"
+  short_description: "Customer signal triage, impact framing, and routed handoffs"
+  default_prompt: "Use $p1zza-customer-management to triage customer signals and route them into the p1zza-agent workflow."

@@ -23,6 +23,7 @@ When running in Codex, prefer the local skills in `skills/`:
 - `p1zza-development-lead` — cross-domain planning, directives, review, release coordination
 - `p1zza-product-manager` — product strategy, roadmap, release scope, and project-manager-style delivery coordination
 - `p1zza-product-owner` — backlog ownership, acceptance criteria, business priority, and scope clarification
+- `p1zza-customer-management` — customer signal triage, feedback synthesis, churn-risk framing, and routed handoffs
 - `p1zza-qa` — validation, regression, defect reporting, release-risk assessment
 - `p1zza-code-reviewer` — post-change quality review
 - `p1zza-security-reviewer` — security review for auth, input, and sensitive flows
@@ -41,6 +42,7 @@ The canonical source of truth remains `agents/*.md`, `rules/**`, and `scripts/**
 - Default sub-agents to the latest available model with `high` reasoning; use `xhigh` for complex planning, migration, and cross-domain coordination.
 - Product manager owns product scope, roadmap framing, milestone planning, and project-manager-style execution tracking.
 - Product owner owns business priority, backlog readiness, acceptance criteria, and scope clarification.
+- Customer management owns customer-signal capture, impact framing, and routed escalation artifacts.
 - Development lead owns cross-domain coordination, merge authority, and deploy decisions.
 - QA validates against declared contracts and reports defects; it does not silently fix product behavior.
 - Frontend consumes explicit backend/infrastructure contracts through `frontend-contract-v1` and answers with `frontend-response-v1` when blocked or partial.
@@ -64,6 +66,7 @@ Default bootstrap role:
 
 ## Auto-dispatch
 
+customer feedback / support triage / voice-of-customer / churn-risk escalation → customer-management
 product strategy / roadmap / release scope / project coordination → product-manager
 backlog refinement / acceptance criteria / business priority / scope clarification → product-owner
 frontend feature (components/hooks/state/routing) → frontend-developer
@@ -105,7 +108,7 @@ planner, architect, tdd-guide, build-error-resolver, e2e-runner, refactor-cleane
 
 ### Coordination agents
 
-development-lead, product-manager, product-owner, qa
+development-lead, product-manager, product-owner, customer-management, qa
 
 ## Handoff Protocol
 
@@ -116,6 +119,7 @@ backend-developer → database-reviewer: schema review
 any implementation → code-reviewer + language reviewer: post-implementation
 security-sensitive code → security-reviewer: mandatory before commit
 cross-domain work → development-lead: coordination and next-owner directives
+customer signal, support issue, or recurring user pain → customer-management: normalize evidence and route next owner
 product scope, roadmap, or milestone framing → product-manager: product direction and delivery planning
 business priority or acceptance clarification → product-owner: backlog readiness and acceptance definition
 implementation ready for validation → qa: contract-based verification
