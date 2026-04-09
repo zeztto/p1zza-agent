@@ -14,7 +14,7 @@
       },
       {
         "matcher": "Bash",
-        "hooks": [{ "type": "command", "command": "node \"$HOME/.claude/scripts/hooks/run-with-flags.js\" \"pre:bash:commit-quality\" \"scripts/hooks/pre-bash-commit-quality.js\" \"strict\"" }]
+        "hooks": [{ "type": "command", "command": "node \"$HOME/.claude/scripts/hooks/run-with-flags.js\" \"pre:bash:commit-quality\" \"scripts/hooks/pre-bash-commit-quality.js\" \"standard,strict\"" }]
       },
       {
         "matcher": "Write",
