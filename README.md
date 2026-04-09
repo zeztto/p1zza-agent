@@ -1,6 +1,6 @@
 # p1zza-agent
 
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/sungwoonchun/p1zza-agent)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/zeztto/p1zza-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Reference](https://img.shields.io/badge/reference-ECC-orange.svg)](https://github.com/affaan-m/everything-claude-code)
 
@@ -20,8 +20,13 @@
 - Codex와 Claude 각각에 맞는 runtime package 제공
 - agent, rule, skill, handoff packet semantics를 양쪽에서 일관되게 유지
 - 루트 설치기 하나로 `Claude`, `Codex`, `Claude + Codex` 설치 지원
-- Codex는 `~/.codex/AGENTS.md`와 `~/.agents/skills/p1zza-*`를 사용
+- Codex는 `~/.codex/AGENTS.md`와 `~/.codex/skills/p1zza-*`를 사용
 - Claude는 `~/.claude/CLAUDE.md`를 중심으로 동작
+
+주의:
+
+- Codex skill의 canonical 설치 경로는 `~/.codex/skills/p1zza-*`입니다.
+- `~/.codex/.agents/skills/` 는 legacy/실험 경로로 취급하며 기본 설치 대상으로 사용하지 않습니다.
 
 ### Product Root와 Runtime의 차이
 
@@ -31,7 +36,7 @@
 - 루트 [CLAUDE.md](./CLAUDE.md): 이 저장소를 Claude에서 직접 열고 작업할 때 쓰는 product-level 안내
 - 실제 runtime entrypoint:
   - Claude: `claude/CLAUDE.md`
-  - Codex: `codex/AGENTS.md` + `codex/.agents/skills/`
+  - Codex: `codex/AGENTS.md` + `codex/skills/`
 
 즉, 루트의 `AGENTS.md`와 `CLAUDE.md`는 설치 대상 runtime 파일이 아니라, **이 저장소 자체를 개발할 때의 루트 안내 파일**입니다.
 
@@ -39,7 +44,7 @@
 
 ```bash
 # 1. clone
-git clone https://github.com/sungwoonchun/p1zza-agent.git
+git clone https://github.com/zeztto/p1zza-agent.git
 cd p1zza-agent
 
 # 2. install
@@ -69,7 +74,7 @@ curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/install.sh 
 
 - Claude target: `~/.claude`
 - Codex root: `~/.codex`
-- Codex skills: `~/.agents/skills/p1zza-*`
+- Codex skills: `~/.codex/skills/p1zza-*`
 
 중요:
 
@@ -104,7 +109,7 @@ claude/
 
 codex/
 ├── AGENTS.md
-├── .agents/skills/
+├── skills/
 ├── agents/
 ├── rules/
 ├── docs/
@@ -154,8 +159,13 @@ Canonical packet set:
 - Separate runtime packages for Claude and Codex
 - Shared agent, rule, skill, and packet semantics across both runtimes
 - One unified installer for `Claude`, `Codex`, or `Claude + Codex`
-- Codex uses `~/.codex/AGENTS.md` and `~/.agents/skills/p1zza-*`
+- Codex uses `~/.codex/AGENTS.md` and `~/.codex/skills/p1zza-*`
 - Claude uses `~/.claude/CLAUDE.md` as its runtime entrypoint
+
+Important:
+
+- The canonical Codex skill install path is `~/.codex/skills/p1zza-*`.
+- `~/.codex/.agents/skills/` is treated as a legacy or experimental path and is not the default install target.
 
 ### Product Root vs Runtime Package
 
@@ -165,14 +175,14 @@ The repository root is a **product root**, not a runtime package.
 - Root [CLAUDE.md](./CLAUDE.md): product-level guidance when this repository is opened directly in Claude
 - Actual runtime entrypoints:
   - Claude: `claude/CLAUDE.md`
-  - Codex: `codex/AGENTS.md` + `codex/.agents/skills/`
+  - Codex: `codex/AGENTS.md` + `codex/skills/`
 
 So the root `AGENTS.md` and `CLAUDE.md` are not runtime install artifacts. They are repository-level guidance files for maintaining this project itself.
 
 ### Quick Start
 
 ```bash
-git clone https://github.com/sungwoonchun/p1zza-agent.git
+git clone https://github.com/zeztto/p1zza-agent.git
 cd p1zza-agent
 ./install.sh
 ```
@@ -200,7 +210,7 @@ curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/install.sh 
 
 - Claude target: `~/.claude`
 - Codex root: `~/.codex`
-- Codex skills: `~/.agents/skills/p1zza-*`
+- Codex skills: `~/.codex/skills/p1zza-*`
 
 Important:
 
@@ -235,7 +245,7 @@ claude/
 
 codex/
 ├── AGENTS.md
-├── .agents/skills/
+├── skills/
 ├── agents/
 ├── rules/
 ├── docs/

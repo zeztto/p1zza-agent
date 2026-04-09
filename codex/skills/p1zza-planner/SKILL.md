@@ -7,9 +7,9 @@ description: Use for complex feature work, legacy migration planning, architectu
 
 ## Canonical References
 
-- `../../../agents/planner.md`
-- `../../../AGENTS.md`
-- `../../../rules/common/delegation.md`
+- `../../agents/planner.md`
+- `../../AGENTS.md`
+- `../../rules/common/delegation.md`
 
 ## Workflow
 

@@ -4,6 +4,7 @@ set -euo pipefail
 P1ZZA_REPO_URL="${P1ZZA_REPO_URL:-https://github.com/zeztto/p1zza-agent}"
 P1ZZA_REPO_REF="${P1ZZA_REPO_REF:-main}"
 P1ZZA_TARBALL_URL="${P1ZZA_TARBALL_URL:-https://codeload.github.com/zeztto/p1zza-agent/tar.gz/refs/heads/$P1ZZA_REPO_REF}"
+P1ZZA_LINK_SHARED_SKILLS="${P1ZZA_LINK_SHARED_SKILLS:-0}"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_INSTALLER="$SCRIPT_DIR/../install.sh"
@@ -11,8 +12,10 @@ BACKUP_ROOT="$HOME/.p1zza-agent-backups"
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 
 CODEX_TARGET_ROOT="$HOME/.codex"
+CODEX_SKILLS_TARGET="$CODEX_TARGET_ROOT/skills"
+CODEX_LEGACY_SKILLS_TARGET="$CODEX_TARGET_ROOT/.agents/skills"
 CODEX_LEGACY_PACKAGE_TARGET="$CODEX_TARGET_ROOT/p1zza-agent"
-SKILLS_TARGET="$HOME/.agents/skills"
+SHARED_SKILLS_TARGET="$HOME/.agents/skills"
 CODEX_BACKUP_PATH=""
 CODEX_LEGACY_BACKUP_PATH=""
 SKILL_BACKUP_DIR=""
@@ -40,7 +43,7 @@ bootstrap_package_if_needed() {
   local archive_path=""
   local extracted_dir=""
 
-  if [ -f "$SCRIPT_DIR/AGENTS.md" ] && [ -d "$SCRIPT_DIR/agents" ] && [ -d "$SCRIPT_DIR/rules" ] && [ -d "$SCRIPT_DIR/.agents/skills" ]; then
+  if [ -f "$SCRIPT_DIR/AGENTS.md" ] && [ -d "$SCRIPT_DIR/agents" ] && [ -d "$SCRIPT_DIR/rules" ] && [ -d "$SCRIPT_DIR/skills" ]; then
     return
   fi
 
@@ -69,6 +72,7 @@ bootstrap_package_if_needed() {
     P1ZZA_REPO_URL="$P1ZZA_REPO_URL" \
     P1ZZA_REPO_REF="$P1ZZA_REPO_REF" \
     P1ZZA_TARBALL_URL="$P1ZZA_TARBALL_URL" \
+    P1ZZA_LINK_SHARED_SKILLS="$P1ZZA_LINK_SHARED_SKILLS" \
     "$installer_path" "$@"
 }
 
@@ -90,12 +94,17 @@ local_install() {
   local target_path
   local skill_dir
   local skill_source_root
+  local skill_target_root
+  local legacy_skill_target_root
 
   echo "Installing Codex package from: $SCRIPT_DIR"
   echo "Target root:    $CODEX_TARGET_ROOT"
-  echo "Skills target:  $SKILLS_TARGET/p1zza-*"
+  echo "Skills target:  $CODEX_SKILLS_TARGET/p1zza-*"
+  if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
+    echo "Shared links:   $SHARED_SKILLS_TARGET/p1zza-*"
+  fi
 
-  mkdir -p "$CODEX_TARGET_ROOT" "$SKILLS_TARGET"
+  mkdir -p "$CODEX_TARGET_ROOT"
 
   if [ -e "$CODEX_LEGACY_PACKAGE_TARGET" ] || [ -L "$CODEX_LEGACY_PACKAGE_TARGET" ]; then
     CODEX_LEGACY_BACKUP_PATH="$(backup_path "$CODEX_LEGACY_PACKAGE_TARGET" "codex-legacy-package")"
@@ -122,44 +131,75 @@ local_install() {
     fi
   done
 
-  if [ -e "$CODEX_TARGET_ROOT/.agents/skills" ] || [ -L "$CODEX_TARGET_ROOT/.agents/skills" ]; then
-    if [ -z "$CODEX_BACKUP_PATH" ]; then
-      CODEX_BACKUP_PATH="$BACKUP_ROOT/codex-root-$TIMESTAMP"
-      mkdir -p "$CODEX_BACKUP_PATH"
-    fi
-    mkdir -p "$CODEX_BACKUP_PATH/.agents"
-    mv "$CODEX_TARGET_ROOT/.agents/skills" "$CODEX_BACKUP_PATH/.agents/skills"
-  fi
-
   cp "$SCRIPT_DIR/AGENTS.md" "$CODEX_TARGET_ROOT/"
   cp -R "$SCRIPT_DIR/agents" "$CODEX_TARGET_ROOT/"
   cp -R "$SCRIPT_DIR/rules" "$CODEX_TARGET_ROOT/"
   cp -R "$SCRIPT_DIR/docs" "$CODEX_TARGET_ROOT/"
-  mkdir -p "$CODEX_TARGET_ROOT/.agents"
-  cp -R "$SCRIPT_DIR/.agents/skills" "$CODEX_TARGET_ROOT/.agents/"
-  find "$CODEX_TARGET_ROOT" -name '.DS_Store' -delete 2>/dev/null || true
-
-  SKILL_BACKUP_DIR="$BACKUP_ROOT/codex-skills-$TIMESTAMP"
-  mkdir -p "$SKILL_BACKUP_DIR"
-
-  skill_source_root="$CODEX_TARGET_ROOT/.agents/skills"
+  skill_source_root="$SCRIPT_DIR/skills"
+  skill_target_root="$CODEX_SKILLS_TARGET"
+  legacy_skill_target_root="$CODEX_LEGACY_SKILLS_TARGET"
+  mkdir -p "$skill_target_root"
 
   for skill_dir in "$skill_source_root"/*; do
     [ -d "$skill_dir" ] || continue
 
     local skill_name
     skill_name="$(basename "$skill_dir")"
-    local skill_target="$SKILLS_TARGET/$skill_name"
+    local skill_target="$skill_target_root/$skill_name"
+    local legacy_skill_target="$legacy_skill_target_root/$skill_name"
 
     if [ -e "$skill_target" ] || [ -L "$skill_target" ]; then
-      mv "$skill_target" "$SKILL_BACKUP_DIR/$skill_name"
+      if [ -z "$CODEX_BACKUP_PATH" ]; then
+        CODEX_BACKUP_PATH="$BACKUP_ROOT/codex-root-$TIMESTAMP"
+        mkdir -p "$CODEX_BACKUP_PATH"
+      fi
+      mkdir -p "$CODEX_BACKUP_PATH/skills"
+      mv "$skill_target" "$CODEX_BACKUP_PATH/skills/$skill_name"
     fi
 
-    ln -s "$skill_dir" "$skill_target"
+    if [ -e "$legacy_skill_target" ] || [ -L "$legacy_skill_target" ]; then
+      if [ -z "$CODEX_BACKUP_PATH" ]; then
+        CODEX_BACKUP_PATH="$BACKUP_ROOT/codex-root-$TIMESTAMP"
+        mkdir -p "$CODEX_BACKUP_PATH"
+      fi
+      mkdir -p "$CODEX_BACKUP_PATH/.agents/skills"
+      mv "$legacy_skill_target" "$CODEX_BACKUP_PATH/.agents/skills/$skill_name"
+    fi
+
+    cp -R "$skill_dir" "$skill_target_root/"
   done
 
+  if [ -d "$legacy_skill_target_root" ]; then
+    rmdir "$legacy_skill_target_root" 2>/dev/null || true
+    rmdir "$CODEX_TARGET_ROOT/.agents" 2>/dev/null || true
+  fi
+
+  find "$CODEX_TARGET_ROOT" -name '.DS_Store' -delete 2>/dev/null || true
+
+  if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
+    SKILL_BACKUP_DIR="$BACKUP_ROOT/codex-skills-$TIMESTAMP"
+    mkdir -p "$SKILL_BACKUP_DIR" "$SHARED_SKILLS_TARGET"
+
+    for skill_dir in "$skill_target_root"/*; do
+      [ -d "$skill_dir" ] || continue
+
+      local skill_name
+      skill_name="$(basename "$skill_dir")"
+      local skill_target="$SHARED_SKILLS_TARGET/$skill_name"
+
+      if [ -e "$skill_target" ] || [ -L "$skill_target" ]; then
+        mv "$skill_target" "$SKILL_BACKUP_DIR/$skill_name"
+      fi
+
+      ln -s "$skill_dir" "$skill_target"
+    done
+  fi
+
   echo "Codex files installed to: $CODEX_TARGET_ROOT"
-  echo "Linked skills: $(find "$skill_source_root" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
+  echo "Installed skills: $(find "$skill_target_root" -mindepth 1 -maxdepth 1 -type d -name 'p1zza-*' | wc -l | tr -d ' ')"
+  if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
+    echo "Shared skill links: $(find "$skill_target_root" -mindepth 1 -maxdepth 1 -type d -name 'p1zza-*' | wc -l | tr -d ' ')"
+  fi
 
   if [ -n "$CODEX_BACKUP_PATH" ]; then
     echo "Codex backup:   $CODEX_BACKUP_PATH"
@@ -175,7 +215,7 @@ local_install() {
 }
 
 if [ -x "$ROOT_INSTALLER" ]; then
-  P1ZZA_INSTALL_MODE=codex P1ZZA_AUTO_CONFIRM="${P1ZZA_AUTO_CONFIRM:-1}" exec "$ROOT_INSTALLER" "$@"
+  P1ZZA_INSTALL_MODE=codex P1ZZA_AUTO_CONFIRM="${P1ZZA_AUTO_CONFIRM:-1}" P1ZZA_LINK_SHARED_SKILLS="$P1ZZA_LINK_SHARED_SKILLS" exec "$ROOT_INSTALLER" "$@"
 fi
 
 bootstrap_package_if_needed "$@"

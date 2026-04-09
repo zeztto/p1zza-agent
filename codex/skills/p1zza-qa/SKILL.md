@@ -7,12 +7,12 @@ description: Use for QA validation, regression planning, defect reporting, relea
 
 ## Canonical References
 
-- `../../../agents/qa.md`
-- `../../../rules/common/session-boundaries.md`
-- `../../../rules/common/qa-collaboration.md`
-- `../../../rules/common/qa-workflow.md`
-- `../../../rules/common/qa-templates.md`
-- `../../../rules/common/team-collaboration.md`
+- `../../agents/qa.md`
+- `../../rules/common/session-boundaries.md`
+- `../../rules/common/qa-collaboration.md`
+- `../../rules/common/qa-workflow.md`
+- `../../rules/common/qa-templates.md`
+- `../../rules/common/team-collaboration.md`
 
 ## Responsibilities
 

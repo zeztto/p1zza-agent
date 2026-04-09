@@ -4,12 +4,14 @@
 
 - Respond in Korean. Keep technical terms and code identifiers in English.
 - Be concise and lead with action.
+- Use AI-agent-friendly deterministic packets for outward communication by default. Do not send human-targeted explanatory prose unless the user explicitly asks for it.
+- If the user asks for a stakeholder-facing human message such as a CEO update, produce it separately in that stakeholder's language after the packet output.
 - Use `rules/` as the canonical rule set. Do not duplicate those rules unless a task needs a focused reminder.
 - Keep implementation agents within their file-path boundaries. Review skills are read-only unless the user explicitly asks for remediation.
 
 ## Codex Skills
 
-When running in Codex, prefer the local skills in `.agents/skills/`:
+When running in Codex, prefer the local skills in `skills/`:
 
 - `p1zza-agent` — umbrella router for installation, migration, and agent-system work
 - `p1zza-planner` — complex implementation and refactor planning
@@ -27,13 +29,31 @@ The canonical source of truth remains `agents/*.md`, `rules/**`, and `scripts/**
 ## Operating Model
 
 - Run a planning gate before implementation, validation, or release work with meaningful scope.
+- Start each new session or newly scoped user turn in development-lead/router mode unless the input is already a narrow single-role follow-up tied to an existing packet.
+- Determine the active role before substantive work and make the role decision explicit in a startup packet.
 - Keep one primary domain owner per execution slice.
 - Use deterministic plain-text handoff packets for cross-domain coordination.
 - Use sub-agents aggressively for independent slices, preferably in parallel.
+- When the work has 2 or more independent slices, or when analysis and implementation can proceed in parallel, dispatch sub-agents early instead of waiting for local completion.
 - Default sub-agents to the latest available model with `high` reasoning; use `xhigh` for complex planning, migration, and cross-domain coordination.
 - Development lead owns cross-domain coordination, merge authority, and deploy decisions.
 - QA validates against declared contracts and reports defects; it does not silently fix product behavior.
 - Frontend consumes explicit backend/infrastructure contracts through `frontend-contract-v1` and answers with `frontend-response-v1` when blocked or partial.
+
+## Session Bootstrap
+
+For every fresh thread, fresh task, or materially changed user request:
+
+1. decide whether development-lead/router or a single specialist owns the session start
+2. emit a `session-bootstrap-v1` packet before substantive execution
+3. identify independent slices and the sub-agent delegation plan
+4. dispatch sub-agents early when the slices are real and non-overlapping
+5. keep subsequent outward messages packet-first and parser-safe
+
+Default bootstrap role:
+
+- `development-lead` for multi-step work, audits, migrations, ambiguous ownership, or any task that benefits from delegation
+- a single specialist only when the request is already narrow, single-domain, and does not need coordination
 
 # Agent Dispatch
 
@@ -95,3 +115,4 @@ implementation ready for validation → qa: contract-based verification
 
 Parallel-launch independent agents. Sequential only when output depends on prior agent.
 Use the latest available model and high reasoning for sub-agents by default.
+Do not skip role selection, bootstrap packet emission, or delegation planning at session start.

@@ -7,12 +7,12 @@ description: Use for React or Next.js frontend implementation in the p1zza-agent
 
 ## Canonical References
 
-- `../../../agents/frontend-developer.md`
-- `../../../rules/web/patterns.md`
-- `../../../rules/web/coding-style.md`
-- `../../../rules/web/frontend-collaboration.md`
-- `../../../rules/web/frontend-delivery.md`
-- `../../../rules/typescript/patterns.md`
+- `../../agents/frontend-developer.md`
+- `../../rules/web/patterns.md`
+- `../../rules/web/coding-style.md`
+- `../../rules/web/frontend-collaboration.md`
+- `../../rules/web/frontend-delivery.md`
+- `../../rules/typescript/patterns.md`
 
 ## Scope
 

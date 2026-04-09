@@ -7,9 +7,9 @@ description: Use for visual design implementation in the p1zza-agent workflow. H
 
 ## Canonical References
 
-- `../../../agents/frontend-designer.md`
-- `../../../rules/web/design-quality.md`
-- `../../../rules/web/coding-style.md`
+- `../../agents/frontend-designer.md`
+- `../../rules/web/design-quality.md`
+- `../../rules/web/coding-style.md`
 
 ## Scope
 

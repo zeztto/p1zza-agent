@@ -9,17 +9,29 @@ Use this as the umbrella skill for the Codex-focused p1zza-agent package.
 
 ## Load First
 
-- `../../../AGENTS.md`
+- `../../AGENTS.md`
 
 ## Responsibilities
 
+- Start in development-lead/router mode by default unless the user request is already a narrow single-role follow-up.
+- Determine the active role before substantive work and emit a `session-bootstrap-v1` packet first.
 - Choose the right p1zza skill as early as possible.
-- Treat `../../../agents/*.md` as the canonical specialist definitions.
-- Treat `../../../rules/**` as the canonical behavior and quality constraints.
+- Treat `../../agents/*.md` as the canonical specialist definitions.
+- Treat `../../rules/**` as the canonical behavior and quality constraints.
 - When updating the agent system itself, keep Codex skills aligned with the canonical files in this package instead of inventing a second source of truth.
+
+## Bootstrap Workflow
+
+1. classify the request by ownership, risk, and whether multiple slices exist
+2. pick the active role for session start
+3. emit `session-bootstrap-v1`
+4. if the work has independent slices, delegate them early in parallel
+5. route the execution slice to the owning specialist skill
+6. keep outward communication packet-only unless the user explicitly asks for human-readable explanation
 
 ## Routing
 
+- Default session bootstrap or coordination-heavy work -> `../p1zza-development-lead/SKILL.md`
 - Frontend feature or client logic -> `../p1zza-frontend-developer/SKILL.md`
 - Visual design, CSS, tokens, motion -> `../p1zza-frontend-designer/SKILL.md`
 - API, auth, DB, Python backend -> `../p1zza-backend-developer/SKILL.md`
@@ -32,7 +44,7 @@ Use this as the umbrella skill for the Codex-focused p1zza-agent package.
 
 ## Migration Guardrails
 
-- Keep `../../../p1zza-bot/` intact until the replacement path is verified.
+- Keep the legacy `p1zza-bot/` repository intact until the replacement path is verified.
 - Prefer extraction and adaptation over a blind copy of legacy code.
 - For migration work, start with a plan that maps legacy capabilities to the new agent/rule/skill structure.
 - When a legacy behavior is unclear, inspect the bot source before changing the new system.
