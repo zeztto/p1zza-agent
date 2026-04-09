@@ -8,10 +8,35 @@ This file is AI-agent-friendly by default.
 - CHANGE TYPE: product-level summary, not commit dump
 - LINEAGE: `p1zza-agent` is maintained as an `Everything Claude Code (ECC)` fork adapted for Claude + Codex
 
-## 0.3.0
+## 0.3.1
 
 DATE: `2026-04-09`
 STATUS: preparing-in-repo
+
+SUMMARY:
+
+- README maintenance and changelog version logging are being promoted into explicit product capabilities of the agent system for versioned workspaces that define them.
+- Claude and Codex runtime guidance now treats documentation upkeep as part of normal product delivery rather than optional cleanup.
+- The documentation workflow and `doc-updater` role were expanded so versioned product changes in qualifying workspaces must carry README and changelog updates together.
+
+CHANGES:
+
+- documented at the product root that `README.md` maintenance and `CHANGELOG.md` version logging are agent-system responsibilities in qualifying versioned workspaces
+- updated Claude and Codex entrypoint guidance to treat docs/versioning upkeep as built-in service behavior
+- inserted a docs/versioning step into the shared development workflow for both runtimes
+- expanded `doc-updater` in both packages to manage `CHANGELOG.md` alongside `README.md`
+- product version bumped from `0.3.0` to `0.3.1`
+
+IMPACT:
+
+- future product-visible changes are less likely to ship without README updates
+- version history is tied more tightly to runtime behavior and release discipline
+- documentation upkeep becomes a predictable part of the service contract
+
+## 0.3.0
+
+DATE: `2026-04-09`
+STATUS: released-in-repo
 
 SUMMARY:
 
@@ -26,6 +51,7 @@ CHANGES:
 - added Codex skills `p1zza-product-manager` and `p1zza-product-owner`
 - updated shared auto-dispatch and coordination registry for product strategy, backlog ownership, and acceptance clarification flows
 - clarified that `development-lead` retains merge and deploy authority while product roles own scope and acceptance framing
+- documented that `README.md` and `CHANGELOG.md` must be updated together for versioned or user-visible product changes
 - product version bumped from `0.2.0` to `0.3.0`
 
 IMPACT:

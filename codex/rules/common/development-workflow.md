@@ -16,6 +16,8 @@ Extends [git-workflow.md](./git-workflow.md) with pre-git process.
 
 3. **Review** → code-reviewer agent, fix CRITICAL/HIGH
 
-4. **Commit** → conventional commits, see [git-workflow.md](./git-workflow.md)
+4. **Docs/Versioning** → in versioned workspaces that define both files, when product-visible behavior, install flow, agent catalog, or operating semantics change, update `README.md` and `CHANGELOG.md` in the same change
 
-5. **Pre-review** → CI passing, conflicts resolved, branch synced
+5. **Commit** → conventional commits, see [git-workflow.md](./git-workflow.md)
+
+6. **Pre-review** → CI passing, conflicts resolved, branch synced

@@ -22,4 +22,5 @@ When a project-level directive conflicts with global settings, do not silently f
 ## Intent
 
 - Use `AGENTS.md` and the local skills as the main Codex entrypoint.
+- In versioned workspaces that define both files, treat `README.md` upkeep and `CHANGELOG.md` version logging as built-in product responsibilities when product-visible changes land.
 - Do not treat this file as an additional rule layer beyond compatibility and package orientation.

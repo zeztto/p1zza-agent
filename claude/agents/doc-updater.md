@@ -1,6 +1,6 @@
 ---
 name: doc-updater
-description: Documentation and codemap specialist. Use PROACTIVELY for updating codemaps and documentation. Runs /update-codemaps and /update-docs, generates docs/CODEMAPS/*, updates READMEs and guides.
+description: Documentation and codemap specialist. Use PROACTIVELY for updating codemaps and documentation. Runs /update-codemaps and /update-docs, generates docs/CODEMAPS/*, updates READMEs, version logs when present, and guides.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
 model: haiku
 ---
@@ -47,7 +47,7 @@ docs/CODEMAPS/
 ## Doc Update Workflow
 
 1. Extract: JSDoc/TSDoc, README sections, env vars, API endpoints
-2. Update: README.md, docs/GUIDES/*.md, API docs
+2. Update: README.md, `CHANGELOG.md` when the workspace defines one, docs/GUIDES/*.md, API docs
 3. Validate: files exist, links work, examples compile
 
 ## Rules
@@ -56,8 +56,9 @@ docs/CODEMAPS/
 - Always include last-updated timestamp
 - Codemaps under 500 lines each
 - Include setup commands that actually work
+- In versioned workspaces that define both files, when product-visible behavior, install flow, agent catalog, or operating semantics change, update `README.md` and `CHANGELOG.md` together
 
 ## When to Update
 
-- ALWAYS: New features, API changes, dependency changes, architecture changes
+- ALWAYS: New features, API changes, dependency changes, architecture changes, product-visible operating changes
 - OPTIONAL: Bug fixes, cosmetic changes, internal refactoring
