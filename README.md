@@ -2,6 +2,7 @@
 
 [![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](https://github.com/zeztto/p1zza-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Reference](https://img.shields.io/badge/reference-ECC-orange.svg)](https://github.com/affaan-m/everything-claude-code)
 
 AI-agent-friendly dual-package runtime for Claude and Codex.
 
@@ -9,6 +10,8 @@ REPO: `https://github.com/zeztto/p1zza-agent`
 HOMEPAGE: `https://p1zza.kr`
 CREATOR: `h4ppy p1zza`
 VERSION: `0.2.0`
+LINEAGE: fork of `Everything Claude Code (ECC)`
+UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 [한국어](#korean) | [English](#english)
 
@@ -20,8 +23,17 @@ VERSION: `0.2.0`
 
 - PRODUCT: `p1zza-agent`
 - TYPE: dual-package AI agent system
+- LINEAGE: `Everything Claude Code (ECC)` 포크를 기반으로 Claude + Codex 제품 구조로 재구성
 - RUNTIMES: `claude/`, `codex/`
 - PRODUCT ROOT: repository root is maintenance workspace, not a runtime package
+
+### 0.2.0 Highlights
+
+- `0.2.0` 에서 Codex canonical skill path를 `~/.codex/skills/p1zza-*` 로 정리
+- Codex session bootstrap, role selection, delegation planning 규칙 강화
+- packet-first communication을 기본으로 유지하고 CEO-facing human message 예외 규칙 추가
+- installer banner에 `version`, `repo`, `creator`, `homepage` metadata 출력 추가
+- root/shared 문서를 AI-agent-friendly 구조로 재작성
 
 ### Canonical Paths
 
@@ -121,8 +133,17 @@ Canonical packets:
 
 - PRODUCT: `p1zza-agent`
 - TYPE: dual-package AI agent system
+- LINEAGE: rebuilt from the `Everything Claude Code (ECC)` fork into a Claude + Codex product layout
 - RUNTIMES: `claude/`, `codex/`
 - PRODUCT ROOT: repository root is a maintenance workspace, not a runtime package
+
+### 0.2.0 Highlights
+
+- `0.2.0` standardizes the Codex canonical skill path to `~/.codex/skills/p1zza-*`
+- strengthens Codex session bootstrap, role selection, and delegation planning rules
+- keeps packet-first communication as the default and adds an explicit CEO-facing human-message exception
+- adds installer banner metadata for `version`, `repo`, `creator`, and `homepage`
+- rewrites root/shared documentation into a more AI-agent-friendly structure
 
 ### Canonical Paths
 

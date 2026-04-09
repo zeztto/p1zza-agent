@@ -6,6 +6,7 @@ This file is AI-agent-friendly by default.
 - ORDER: newest first
 - VERSIONING: semantic versioning
 - CHANGE TYPE: product-level summary, not commit dump
+- LINEAGE: `p1zza-agent` is maintained as an `Everything Claude Code (ECC)` fork adapted for Claude + Codex
 
 ## 0.2.0
 
@@ -44,5 +45,6 @@ STATUS: initial-product-structure
 SUMMARY:
 
 - initial dual-package product structure for Claude and Codex
+- ECC fork lineage established as the base product direction
 - unified installer added
 - shared rules, agents, and packet semantics organized under one repo
