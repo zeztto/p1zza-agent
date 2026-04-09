@@ -8,7 +8,7 @@
 
 ## Auto-accept permissions
 
-Enable for trusted plans. Disable for exploratory work. Never use dangerously-skip-permissions. Configure `allowedTools` in `~/.claude.json` instead.
+Enable for trusted plans. Disable for exploratory work. Never use dangerously-skip-permissions. Configure tool allowlists through the active Codex runtime configuration instead of Claude-specific settings.
 
 ## TodoWrite
 

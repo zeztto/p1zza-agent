@@ -9,7 +9,6 @@ Use this as the umbrella skill for the Codex-focused p1zza-agent package.
 
 ## Load First
 
-- `../../../CLAUDE.md`
 - `../../../AGENTS.md`
 
 ## Responsibilities
