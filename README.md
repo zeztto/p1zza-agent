@@ -1,6 +1,6 @@
 # p1zza-agent
 
-[![Version](https://img.shields.io/badge/version-0.3.0-blue.svg)](https://github.com/zeztto/p1zza-agent)
+[![Version](https://img.shields.io/badge/version-0.3.1-blue.svg)](https://github.com/zeztto/p1zza-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Reference](https://img.shields.io/badge/reference-ECC-orange.svg)](https://github.com/affaan-m/everything-claude-code)
 
@@ -9,7 +9,7 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 REPO: `https://github.com/zeztto/p1zza-agent`
 HOMEPAGE: `https://p1zza.kr`
 CREATOR: `h4ppy p1zza`
-VERSION: `0.3.0`
+VERSION: `0.3.1`
 LINEAGE: fork of `Everything Claude Code (ECC)`
 UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
@@ -17,7 +17,7 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 `p1zza-agent`는 `Everything Claude Code (ECC)`를 바탕으로 발전시킨 프로젝트입니다. Claude와 Codex를 하나의 제품 안에서 함께 운영할 수 있도록 구조를 다시 정리했고, 각 런타임이 자기 방식대로 동작하면서도 공통 규칙과 협업 방식은 맞춰지도록 설계했습니다.
 
-`0.3.0` 준비 단계에서는 product coordination layer를 확장하는 데 집중했습니다. `product-manager`와 `product-owner`를 추가해 제품 방향, release scope, backlog readiness, acceptance criteria를 engineering coordination과 분리해서 다룰 수 있게 했습니다.
+`0.3.1`에서는 문서 유지와 version logging 자체를 agent system의 product capability로 명시했습니다. 이제 versioned workspace가 `README.md`와 `CHANGELOG.md`를 함께 정의한다면, 그 업데이트는 선택적인 housekeeping이 아니라 제품 변화가 있을 때 런타임이 수행해야 하는 기본 서비스 동작으로 취급합니다.
 
 [한국어](#korean) | [English](#english)
 
@@ -31,13 +31,12 @@ UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 이 저장소의 루트는 실제 런타임이 설치되는 위치가 아니라, 제품을 유지보수하고 배포하기 위한 기준점입니다. 실제 설치는 `claude/`와 `codex/` 패키지를 통해 각각의 런타임 디렉터리로 이루어집니다.
 
-### 0.3.0 Highlights
+### 0.3.1 Highlights
 
-- `0.3.0` 준비 범위에서 `product-manager` 와 `product-owner` agent를 추가
-- Codex skill discovery에 `p1zza-product-manager`, `p1zza-product-owner` wrapper 추가
-- product scope/roadmap 과 backlog/acceptance 를 분리해 `development-lead` overload를 줄이는 방향으로 조정
-- shared auto-dispatch 와 coordination registry에 product 계층을 반영
-- installer 기본 version metadata를 `0.3.0` 으로 상향
+- `0.3.1` 에서 versioned workspace의 `README.md` 유지와 `CHANGELOG.md` version log 작성을 product capability로 승격
+- Claude/Codex runtime entrypoint와 shared workflow에 docs/versioning 의무를 반영
+- `doc-updater` 역할이 version log가 정의된 workspace에서는 CHANGELOG까지 canonical 관리 대상으로 다루도록 확장
+- versioned workspace에서 product-visible change가 생기면 README와 CHANGELOG를 함께 갱신하는 규칙을 런타임 차원에 고정
 
 ### Canonical Paths
 
@@ -125,8 +124,14 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.3.0`
+- CURRENT_VERSION: `0.3.1`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
+
+### Documentation Maintenance
+
+- versioned workspace에서 `README.md` 는 최초 작성 이후에도 지속적으로 관리하는 canonical product document 입니다.
+- workspace가 `README.md` 와 `CHANGELOG.md` 를 함께 정의하고 있고 version 변경, installer 변경, agent catalog 변경, shared operating semantics 변경이 있으면 같은 변경 안에서 둘을 함께 갱신해야 합니다.
+- `CHANGELOG.md` 가 존재하는 workspace에서는 그것이 version log의 canonical source 이며, README는 현재 제품 상태와 사용 방식을 반영해야 합니다.
 
 ---
 
@@ -140,13 +145,12 @@ Canonical packets:
 - RUNTIMES: `claude/`, `codex/`
 - PRODUCT_ROOT_ROLE: maintenance workspace, not a runtime package
 
-### 0.3.0 Highlights
+### 0.3.1 Highlights
 
-- `0.3.0` adds `product-manager` and `product-owner` as first-class product coordination agents
-- adds Codex skill wrappers `p1zza-product-manager` and `p1zza-product-owner`
-- separates product scope and roadmap framing from backlog readiness and acceptance ownership
-- updates shared auto-dispatch and coordination guidance for product-layer work
-- bumps installer default version metadata to `0.3.0`
+- `0.3.1` promotes `README.md` maintenance and `CHANGELOG.md` version logging into first-class product capabilities for versioned workspaces that define both files
+- updates Claude and Codex runtime guidance so docs/versioning are required parts of product-visible changes
+- expands `doc-updater` to treat changelog upkeep as canonical documentation work when a workspace defines one
+- hardens the rule that README and CHANGELOG move together for user-visible product changes in versioned workspaces
 
 ### Canonical Paths
 
@@ -211,5 +215,11 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.3.0`
+- CURRENT_VERSION: `0.3.1`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
+
+### Documentation Maintenance
+
+- In versioned workspaces, `README.md` is a continuously maintained canonical product document after the first release, not a one-time setup file.
+- When a workspace defines both `README.md` and `CHANGELOG.md`, and version, installer flow, agent catalog, or shared operating semantics change, update both in the same change.
+- When a workspace ships `CHANGELOG.md`, it remains the canonical source for version history, while `README.md` must reflect the current product state and usage.

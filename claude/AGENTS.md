@@ -6,6 +6,7 @@
 - Be concise and lead with action.
 - Use `rules/` as the canonical rule set. Do not duplicate those rules unless a task needs a focused reminder.
 - Keep implementation agents within their file-path boundaries. Review skills are read-only unless the user explicitly asks for remediation.
+- In versioned workspaces that define both files, treat `README.md` maintenance and `CHANGELOG.md` version logging as service behavior of the agent system when product-visible changes happen.
 
 ## Claude Skills
 

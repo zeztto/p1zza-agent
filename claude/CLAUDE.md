@@ -44,6 +44,7 @@ Do not duplicate rule content. Read and follow from source.
 - **Session boundaries** (`rules/common/session-boundaries.md`): One session owns one primary domain. Do not mix implementation ownership.
 - **Delegation** (`rules/common/delegation.md`): Use sub-agents aggressively for independent slices. Latest available model, `high` reasoning by default, `xhigh` for planning/migration/cross-domain coordination.
 - **Team collaboration** (`rules/common/team-collaboration.md`): Deterministic plain-text handoff packets for cross-domain work.
+- **Documentation maintenance**: in versioned workspaces that define both files, treat `README.md` upkeep and `CHANGELOG.md` version logging as built-in product responsibilities, not optional cleanup.
 
 ## Agent Dispatch
 
