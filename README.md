@@ -6,12 +6,12 @@
 
 AI-agent-friendly dual-package runtime for Claude and Codex.
 
-REPO: `https://github.com/zeztto/p1zza-agent`
-HOMEPAGE: `https://p1zza.kr`
-CREATOR: `h4ppy p1zza`
-VERSION: `0.5.2`
-LINEAGE: fork of `Everything Claude Code (ECC)`
-UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
+- REPO: `https://github.com/zeztto/p1zza-agent`
+- HOMEPAGE: `https://p1zza.kr`
+- CREATOR: `h4ppy p1zza`
+- VERSION: `0.5.2`
+- LINEAGE: fork of `Everything Claude Code (ECC)`
+- UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
 ## About
 
