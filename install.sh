@@ -4,7 +4,7 @@ set -euo pipefail
 P1ZZA_REPO_URL="${P1ZZA_REPO_URL:-https://github.com/zeztto/p1zza-agent}"
 P1ZZA_REPO_REF="${P1ZZA_REPO_REF:-main}"
 P1ZZA_TARBALL_URL="${P1ZZA_TARBALL_URL:-https://codeload.github.com/zeztto/p1zza-agent/tar.gz/refs/heads/$P1ZZA_REPO_REF}"
-P1ZZA_VERSION="${P1ZZA_VERSION:-0.5.2}"
+P1ZZA_VERSION="${P1ZZA_VERSION:-0.5.3}"
 P1ZZA_AUTO_CONFIRM="${P1ZZA_AUTO_CONFIRM:-0}"
 P1ZZA_LINK_SHARED_SKILLS="${P1ZZA_LINK_SHARED_SKILLS:-0}"
 
@@ -225,7 +225,7 @@ install_codex() {
     mv "$target_path" "$CODEX_BACKUP_PATH/CLAUDE.md"
   fi
 
-  for item in AGENTS.md agents rules docs; do
+  for item in AGENTS.md rules docs; do
     target_path="$CODEX_TARGET_ROOT/$item"
     if [ -e "$target_path" ] || [ -L "$target_path" ]; then
       if [ -z "$CODEX_BACKUP_PATH" ]; then
@@ -237,9 +237,30 @@ install_codex() {
   done
 
   cp "$CODEX_SRC/AGENTS.md" "$CODEX_TARGET_ROOT/"
-  cp -R "$CODEX_SRC/agents" "$CODEX_TARGET_ROOT/"
   cp -R "$CODEX_SRC/rules" "$CODEX_TARGET_ROOT/"
   cp -R "$CODEX_SRC/docs" "$CODEX_TARGET_ROOT/"
+
+  mkdir -p "$CODEX_TARGET_ROOT/agents"
+  local agent_file
+  for agent_file in "$CODEX_SRC/agents"/*; do
+    [ -f "$agent_file" ] || continue
+
+    local agent_name
+    agent_name="$(basename "$agent_file")"
+    target_path="$CODEX_TARGET_ROOT/agents/$agent_name"
+
+    if [ -e "$target_path" ] || [ -L "$target_path" ]; then
+      if [ -z "$CODEX_BACKUP_PATH" ]; then
+        CODEX_BACKUP_PATH="$BACKUP_ROOT/codex-root-$TIMESTAMP"
+        mkdir -p "$CODEX_BACKUP_PATH"
+      fi
+      mkdir -p "$CODEX_BACKUP_PATH/agents"
+      mv "$target_path" "$CODEX_BACKUP_PATH/agents/$agent_name"
+    fi
+
+    cp "$agent_file" "$CODEX_TARGET_ROOT/agents/"
+  done
+
   skill_source_root="$CODEX_SRC/skills"
   skill_target_root="$CODEX_SKILLS_TARGET"
   legacy_skill_target_root="$CODEX_LEGACY_SKILLS_TARGET"

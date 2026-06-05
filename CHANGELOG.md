@@ -8,6 +8,37 @@ This file is AI-agent-friendly by default.
 - CHANGE TYPE: product-level summary, not commit dump
 - LINEAGE: `p1zza-agent` is maintained as an `Everything Claude Code (ECC)` fork adapted for Claude + Codex
 
+## 0.5.3
+
+DATE: `2026-06-06`
+STATUS: preparing-in-repo
+
+SUMMARY:
+
+- Codex users now have a documented LazyCodex + p1zza-agent combined operating mode.
+- The recommended setup keeps p1zza-agent as the primary control plane and uses LazyCodex as an acceleration layer.
+- The repo now includes hierarchical `AGENTS.md` knowledge-base files for high-density maintenance areas.
+- Guardrails for LazyCodex bundled rules, telemetry, and auto-update hooks are documented for reproducible p1zza-agent operation.
+
+CHANGES:
+
+- added `codex/docs/lazycodex-p1zza-optimization-ko.md`
+- updated `codex/docs/README.md` with the new Codex optimization manual
+- updated `codex/README.md` with LazyCodex compatibility policy
+- changed Codex installers to update p1zza-managed `agents/*.md` files without removing external Codex agents such as LazyCodex `*.toml` configs
+- added directory-scoped `AGENTS.md` files under `codex/agents`, `codex/rules`, `codex/skills`, `claude/agents`, `claude/rules`, and `claude/scripts`
+- expanded root `AGENTS.md` into a product-root knowledge base with structure, lookup map, conventions, commands, and anti-patterns
+- updated root `README.md` tutorial links and version references to `0.5.3`
+- product version bumped from `0.5.2` to `0.5.3`
+
+IMPACT:
+
+- users can combine LazyCodex tooling with p1zza-agent without weakening p1zza packet and role discipline
+- Codex sessions gain a clearer path to LSP, AST, diagnostic, and workflow acceleration
+- agents get faster directory-local guidance when editing dense role, rule, skill, or script areas
+- reinstalling p1zza-agent no longer removes LazyCodex Codex agent configs
+- future installs have a documented rollback and verification path for the combined setup
+
 ## 0.5.2
 
 DATE: `2026-04-09`

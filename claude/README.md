@@ -16,7 +16,7 @@ This directory is the Claude Code-focused package for `p1zza-agent`.
 
 ## Current Scope
 
-- 28 agents
+- 28 role files plus directory-scoped `AGENTS.md` guidance
 - 41 rules
 - 31 hook scripts
 - 1 MCP config
