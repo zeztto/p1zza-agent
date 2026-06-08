@@ -1,6 +1,6 @@
 # p1zza-agent
 
-[![Version](https://img.shields.io/badge/version-0.5.3-blue.svg)](https://github.com/zeztto/p1zza-agent)
+[![Version](https://img.shields.io/badge/version-0.5.4-blue.svg)](https://github.com/zeztto/p1zza-agent)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Reference](https://img.shields.io/badge/reference-ECC-orange.svg)](https://github.com/affaan-m/everything-claude-code)
 
@@ -9,7 +9,7 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 - REPO: `https://github.com/zeztto/p1zza-agent`
 - HOMEPAGE: `https://p1zza.kr`
 - CREATOR: `h4ppy p1zza`
-- VERSION: `0.5.3`
+- VERSION: `0.5.4`
 - LINEAGE: fork of `Everything Claude Code (ECC)`
 - UPSTREAM_REFERENCE: `https://github.com/affaan-m/everything-claude-code`
 
@@ -17,7 +17,7 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 
 `p1zza-agent`는 `Everything Claude Code (ECC)`를 바탕으로 발전시킨 프로젝트입니다. Claude와 Codex를 하나의 제품 안에서 함께 운영할 수 있도록 구조를 다시 정리했고, 각 런타임이 자기 방식대로 동작하면서도 공통 규칙과 협업 방식은 맞춰지도록 설계했습니다.
 
-`0.5.3`에서는 Codex 환경에서 `LazyCodex`를 함께 사용할 때의 최적 운영 방식을 문서화했습니다. `p1zza-agent`를 primary control plane으로 유지하고, `LazyCodex`는 LSP, AST, diagnostics, workflow command를 제공하는 acceleration layer로 제한하는 구성을 권장합니다.
+`0.5.4`에서는 LazyCodex 전체 acceleration layer 권장을 철회했습니다. Codex runtime은 다시 `p1zza-agent` 중심으로 운영하고, LazyCodex에서 유용했던 frontend visual design guidance만 standalone skill로 보존합니다.
 
 [한국어](#korean) | [English](#english)
 
@@ -31,13 +31,13 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 
 이 저장소의 루트는 실제 런타임이 설치되는 위치가 아니라, 제품을 유지보수하고 배포하기 위한 기준점입니다. 실제 설치는 `claude/`와 `codex/` 패키지를 통해 각각의 런타임 디렉터리로 이루어집니다.
 
-### 0.5.3 Highlights
+### 0.5.4 Highlights
 
-- Codex package에 `LazyCodex + p1zza-agent` 최적 운영 매뉴얼 추가
-- `p1zza-agent` primary + `LazyCodex` acceleration layer 정책 문서화
-- `/init-deep` 기반 hierarchical `AGENTS.md` knowledge base 추가
-- LazyCodex bundled rules, telemetry, auto-update guardrail 권장값 정리
-- 루트 README와 version metadata를 `0.5.3` 기준으로 갱신
+- LazyCodex plugin, hooks, workflow commands, MCP tooling, multi-agent configs 권장 철회
+- LazyCodex frontend visual-design guidance만 `lazycodex-frontend-ui-ux`로 보존
+- `p1zza-frontend-designer`가 보존된 visual-design heuristics를 참조하도록 갱신
+- Codex installer가 retained non-`p1zza-*` design skill까지 설치 skill 수에 포함
+- 루트 README와 version metadata를 `0.5.4` 기준으로 갱신
 
 ### Canonical Paths
 
@@ -45,11 +45,11 @@ AI-agent-friendly dual-package runtime for Claude and Codex.
 - Codex entrypoint: `codex/AGENTS.md`
 - Claude install target: `~/.claude/`
 - Codex install target: `~/.codex/`
-- Codex skills target: `~/.codex/skills/p1zza-*`
+- Codex skills target: `~/.codex/skills/p1zza-*`, `~/.codex/skills/lazycodex-frontend-ui-ux`
 
 주의:
 
-- `~/.codex/skills/p1zza-*` 가 Codex의 canonical skill path 입니다.
+- `~/.codex/skills/p1zza-*` 와 `~/.codex/skills/lazycodex-frontend-ui-ux` 가 Codex의 canonical skill path 입니다.
 - `~/.codex/.agents/skills/` 는 legacy 또는 experimental path로만 취급합니다.
 - 루트 `AGENTS.md`, `CLAUDE.md` 는 저장소 유지보수용 안내이며 runtime install artifact가 아닙니다.
 
@@ -114,7 +114,7 @@ curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/install.sh 
 
 - AI agent quickstart: [`docs/ai-agent-quickstart.md`](./docs/ai-agent-quickstart.md)
 - Korean vibe-coding guide: [`docs/vibe-coding-guide-ko.md`](./docs/vibe-coding-guide-ko.md)
-- LazyCodex + p1zza-agent Korean manual: [`codex/docs/lazycodex-p1zza-optimization-ko.md`](./codex/docs/lazycodex-p1zza-optimization-ko.md)
+- LazyCodex frontend-design-only rollback manual: [`codex/docs/lazycodex-p1zza-optimization-ko.md`](./codex/docs/lazycodex-p1zza-optimization-ko.md)
 
 ### Operating Rules
 
@@ -136,7 +136,7 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.5.3`
+- CURRENT_VERSION: `0.5.4`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance
@@ -157,13 +157,13 @@ Canonical packets:
 - RUNTIMES: `claude/`, `codex/`
 - PRODUCT_ROOT_ROLE: maintenance workspace, not a runtime package
 
-### 0.5.3 Highlights
+### 0.5.4 Highlights
 
-- `0.5.3` documents the recommended LazyCodex + p1zza-agent combined Codex setup
-- defines p1zza-agent as the primary control plane and LazyCodex as the acceleration layer
-- adds hierarchical `AGENTS.md` knowledge-base files generated from `/init-deep` analysis
-- documents guardrails for LazyCodex bundled rules, telemetry, and auto-update hooks
-- updates root README and version metadata for the `0.5.3` line
+- `0.5.4` rolls Codex operation back to p1zza-agent as the default runtime control plane
+- removes LazyCodex plugin, hook, workflow-command, MCP, and multi-agent usage from the recommended setup
+- retains only LazyCodex frontend visual-design guidance as `lazycodex-frontend-ui-ux`
+- connects the retained design guidance to `p1zza-frontend-designer`
+- updates root README and version metadata for the `0.5.4` line
 
 ### Canonical Paths
 
@@ -172,11 +172,11 @@ Canonical packets:
 - Codex entrypoint: `codex/AGENTS.md`
 - Claude install target: `~/.claude/`
 - Codex install target: `~/.codex/`
-- Codex skills target: `~/.codex/skills/p1zza-*`
+- Codex skills target: `~/.codex/skills/p1zza-*`, `~/.codex/skills/lazycodex-frontend-ui-ux`
 
 Notes:
 
-- `~/.codex/skills/p1zza-*` is the canonical Codex skill path.
+- `~/.codex/skills/p1zza-*` and `~/.codex/skills/lazycodex-frontend-ui-ux` are the canonical Codex skill paths.
 - `~/.codex/.agents/skills/` is treated as a legacy or experimental path only.
 - Root `AGENTS.md` and `CLAUDE.md` are repository-maintenance guides, not runtime install artifacts.
 
@@ -213,7 +213,7 @@ curl -fsSL https://raw.githubusercontent.com/zeztto/p1zza-agent/main/install.sh 
 
 - AI agent quickstart: [`docs/ai-agent-quickstart.md`](./docs/ai-agent-quickstart.md)
 - Korean vibe-coding guide: [`docs/vibe-coding-guide-ko.md`](./docs/vibe-coding-guide-ko.md)
-- LazyCodex + p1zza-agent Korean manual: [`codex/docs/lazycodex-p1zza-optimization-ko.md`](./codex/docs/lazycodex-p1zza-optimization-ko.md)
+- LazyCodex frontend-design-only rollback manual: [`codex/docs/lazycodex-p1zza-optimization-ko.md`](./codex/docs/lazycodex-p1zza-optimization-ko.md)
 
 ### Operating Rules
 
@@ -238,7 +238,7 @@ Canonical packets:
 
 ### Versioning
 
-- CURRENT_VERSION: `0.5.3`
+- CURRENT_VERSION: `0.5.4`
 - CHANGELOG: [`CHANGELOG.md`](./CHANGELOG.md)
 
 ### Documentation Maintenance

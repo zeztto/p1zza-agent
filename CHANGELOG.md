@@ -8,6 +8,32 @@ This file is AI-agent-friendly by default.
 - CHANGE TYPE: product-level summary, not commit dump
 - LINEAGE: `p1zza-agent` is maintained as an `Everything Claude Code (ECC)` fork adapted for Claude + Codex
 
+## 0.5.4
+
+DATE: `2026-06-09`
+STATUS: active
+
+SUMMARY:
+
+- The recommended Codex setup rolls back from LazyCodex acceleration to p1zza-agent-only operation.
+- LazyCodex plugin hooks, workflow commands, MCP tooling, telemetry, auto-update, and multi-agent configs are no longer part of the active setup.
+- Only the useful LazyCodex frontend visual-design guidance is retained as a standalone Codex skill.
+
+CHANGES:
+
+- added `codex/skills/lazycodex-frontend-ui-ux/SKILL.md`
+- connected `p1zza-frontend-designer` to the retained LazyCodex visual-design heuristics
+- updated `codex/docs/lazycodex-p1zza-optimization-ko.md` into a frontend-design-only rollback manual
+- updated Codex README guidance from LazyCodex compatibility to LazyCodex rollback policy
+- changed installer skill counts so the retained non-`p1zza-*` design skill is counted
+- product version bumped from `0.5.3` to `0.5.4`
+
+IMPACT:
+
+- Codex runtime behavior stays centered on p1zza-agent and avoids LazyCodex token-heavy multi-agent surfaces
+- frontend design work can still use the stronger LazyCodex visual taste guidance
+- future p1zza Codex installs preserve the retained design skill without re-enabling LazyCodex plugin machinery
+
 ## 0.5.3
 
 DATE: `2026-06-06`

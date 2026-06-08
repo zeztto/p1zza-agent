@@ -5,8 +5,8 @@ This directory exists for Codex package-local documentation and compatibility no
 Current use:
 
 - preserve the expected `codex/docs/` package structure for installers
-- provide Codex-specific migration, compatibility, and optimization notes
-- document the supported LazyCodex + p1zza-agent combined operating mode
+- provide Codex-specific migration, compatibility, rollback, and optimization notes
+- document the supported p1zza-agent rollback mode with only LazyCodex frontend design guidance retained
 
 Product-level tutorials live at the repository root:
 
@@ -15,4 +15,4 @@ Product-level tutorials live at the repository root:
 
 Codex-specific docs:
 
-- `lazycodex-p1zza-optimization-ko.md` - Korean manual for the recommended p1zza-agent primary + LazyCodex acceleration setup
+- `lazycodex-p1zza-optimization-ko.md` - Korean manual for the p1zza-agent rollback setup that keeps only LazyCodex frontend design guidance

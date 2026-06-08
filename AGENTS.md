@@ -82,5 +82,5 @@ bash -n install.sh && bash -n codex/install.sh && bash -n claude/install.sh
 ## NOTES
 
 - This repo currently has existing runtime AGENTS files at root, `claude/`, and `codex/`.
-- `codex/docs/lazycodex-p1zza-optimization-ko.md` documents the supported p1zza-agent primary + LazyCodex acceleration setup.
+- `codex/docs/lazycodex-p1zza-optimization-ko.md` documents the p1zza-agent rollback policy with only LazyCodex frontend design guidance retained.
 - When generated knowledge conflicts with `claude/AGENTS.md` or `codex/AGENTS.md`, package-local runtime entrypoints win for files inside those packages.

@@ -4,7 +4,7 @@ set -euo pipefail
 P1ZZA_REPO_URL="${P1ZZA_REPO_URL:-https://github.com/zeztto/p1zza-agent}"
 P1ZZA_REPO_REF="${P1ZZA_REPO_REF:-main}"
 P1ZZA_TARBALL_URL="${P1ZZA_TARBALL_URL:-https://codeload.github.com/zeztto/p1zza-agent/tar.gz/refs/heads/$P1ZZA_REPO_REF}"
-P1ZZA_VERSION="${P1ZZA_VERSION:-0.5.3}"
+P1ZZA_VERSION="${P1ZZA_VERSION:-0.5.4}"
 P1ZZA_AUTO_CONFIRM="${P1ZZA_AUTO_CONFIRM:-0}"
 P1ZZA_LINK_SHARED_SKILLS="${P1ZZA_LINK_SHARED_SKILLS:-0}"
 
@@ -131,13 +131,13 @@ This installer can overwrite or relink existing settings.
 
 - Claude install replaces: $CLAUDE_TARGET
 - Codex install updates:  $CODEX_TARGET_ROOT
-- Codex skills install to: $CODEX_SKILLS_TARGET/p1zza-*
+- Codex skills install to: $CODEX_SKILLS_TARGET/p1zza-* and $CODEX_SKILLS_TARGET/lazycodex-frontend-ui-ux
 
 Existing targets will be backed up under:
 - $BACKUP_ROOT
 EOF
   if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
-    echo "- Codex shared links:   $SHARED_SKILLS_TARGET/p1zza-*"
+    echo "- Codex shared links:   $SHARED_SKILLS_TARGET/p1zza-* and $SHARED_SKILLS_TARGET/lazycodex-frontend-ui-ux"
   fi
 }
 
@@ -206,7 +206,7 @@ install_codex() {
   echo "[Codex] Installing from $CODEX_SRC"
   echo "[Codex] Target root: $CODEX_TARGET_ROOT"
   if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
-    echo "[Codex] Shared links: $SHARED_SKILLS_TARGET/p1zza-*"
+    echo "[Codex] Shared links: $SHARED_SKILLS_TARGET/p1zza-* and $SHARED_SKILLS_TARGET/lazycodex-frontend-ui-ux"
   fi
 
   mkdir -p "$CODEX_TARGET_ROOT"
@@ -323,9 +323,9 @@ install_codex() {
   fi
 
   echo "[Codex] Installed files into: $CODEX_TARGET_ROOT"
-  echo "[Codex] Installed skills: $(find "$skill_target_root" -mindepth 1 -maxdepth 1 -type d -name 'p1zza-*' | wc -l | tr -d ' ')"
+  echo "[Codex] Installed skills: $(find "$skill_source_root" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
   if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
-    echo "[Codex] Shared skill links: $(find "$skill_target_root" -mindepth 1 -maxdepth 1 -type d -name 'p1zza-*' | wc -l | tr -d ' ')"
+    echo "[Codex] Shared skill links: $(find "$skill_source_root" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
   fi
   INSTALLED_CODEX=1
 }
@@ -407,11 +407,11 @@ print_summary() {
 
   if [ "$INSTALLED_CODEX" -eq 1 ]; then
     echo "Codex root:     $CODEX_TARGET_ROOT"
-    echo "Codex skills:   $CODEX_SKILLS_TARGET/p1zza-*"
+    echo "Codex skills:   $CODEX_SKILLS_TARGET/p1zza-* and $CODEX_SKILLS_TARGET/lazycodex-frontend-ui-ux"
   fi
 
   if [ "$INSTALLED_CODEX" -eq 1 ] && [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
-    echo "Shared links:   $SHARED_SKILLS_TARGET/p1zza-*"
+    echo "Shared links:   $SHARED_SKILLS_TARGET/p1zza-* and $SHARED_SKILLS_TARGET/lazycodex-frontend-ui-ux"
   fi
 
   if [ -n "$CLAUDE_BACKUP_PATH" ]; then

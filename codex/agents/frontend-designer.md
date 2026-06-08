@@ -48,6 +48,11 @@ BLOCKED — do NOT read, write, or modify:
 - No default card grids, stock heroes, uniform everything
 - Every surface: hierarchy, rhythm, depth, designed states
 
+### Retained LazyCodex Visual Taste
+- Keep only the useful LazyCodex frontend design guidance: concrete aesthetic direction, stronger typography/color choices, purposeful motion, and non-generic composition.
+- Do not rely on LazyCodex hooks, workflow commands, MCP tools, planner/reviewer agents, telemetry, or auto-update behavior.
+- When Codex would produce a default-looking interface, apply the local `lazycodex-frontend-ui-ux` skill's visual standards while staying inside this role's file boundaries.
+
 ## Handoff
 
 When design implementation needs component logic → delegate to **frontend-developer**.

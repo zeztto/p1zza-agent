@@ -4,7 +4,7 @@ set -euo pipefail
 P1ZZA_REPO_URL="${P1ZZA_REPO_URL:-https://github.com/zeztto/p1zza-agent}"
 P1ZZA_REPO_REF="${P1ZZA_REPO_REF:-main}"
 P1ZZA_TARBALL_URL="${P1ZZA_TARBALL_URL:-https://codeload.github.com/zeztto/p1zza-agent/tar.gz/refs/heads/$P1ZZA_REPO_REF}"
-P1ZZA_VERSION="${P1ZZA_VERSION:-0.5.3}"
+P1ZZA_VERSION="${P1ZZA_VERSION:-0.5.4}"
 P1ZZA_LINK_SHARED_SKILLS="${P1ZZA_LINK_SHARED_SKILLS:-0}"
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -114,9 +114,9 @@ local_install() {
 
   echo "Installing Codex package from: $SCRIPT_DIR"
   echo "Target root:    $CODEX_TARGET_ROOT"
-  echo "Skills target:  $CODEX_SKILLS_TARGET/p1zza-*"
+  echo "Skills target:  $CODEX_SKILLS_TARGET/p1zza-* and $CODEX_SKILLS_TARGET/lazycodex-frontend-ui-ux"
   if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
-    echo "Shared links:   $SHARED_SKILLS_TARGET/p1zza-*"
+    echo "Shared links:   $SHARED_SKILLS_TARGET/p1zza-* and $SHARED_SKILLS_TARGET/lazycodex-frontend-ui-ux"
   fi
 
   mkdir -p "$CODEX_TARGET_ROOT"
@@ -231,9 +231,9 @@ local_install() {
   fi
 
   echo "Codex files installed to: $CODEX_TARGET_ROOT"
-  echo "Installed skills: $(find "$skill_target_root" -mindepth 1 -maxdepth 1 -type d -name 'p1zza-*' | wc -l | tr -d ' ')"
+  echo "Installed skills: $(find "$skill_source_root" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
   if [ "$P1ZZA_LINK_SHARED_SKILLS" = "1" ]; then
-    echo "Shared skill links: $(find "$skill_target_root" -mindepth 1 -maxdepth 1 -type d -name 'p1zza-*' | wc -l | tr -d ' ')"
+    echo "Shared skill links: $(find "$skill_source_root" -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
   fi
 
   if [ -n "$CODEX_BACKUP_PATH" ]; then
